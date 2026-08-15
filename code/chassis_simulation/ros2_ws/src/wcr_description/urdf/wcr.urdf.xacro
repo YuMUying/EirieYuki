@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="wcr">
+
+    <!-- common includes -->
+    <xacro:include filename="wcr_common_properties.xacro"/>
+    <xacro:include filename="wcr_params.xacro"/>
+    <xacro:include filename="wcr_base.xacro"/>  
+    <xacro:include filename="wcr_probe.xacro"/>
+
+    <!-- Gazebo sim block selection -->
+    <xacro:if value="$(arg sim)">
+        <xacro:include filename="wcr.gazebo"/>
+    </xacro:if>
+
+    <!-- choose variant-specific ros2_control parts -->
+    <xacro:if value="${'$(arg variant)' == 'classic'}">
+        <xacro:include filename="wcr_classic.ros2_control.xacro"/>
+    </xacro:if>
+
+    <xacro:if value="${'$(arg variant)' == 'effort'}">
+        <xacro:include filename="wcr_effort.ros2_control.xacro"/>
+    </xacro:if>
+
+    <xacro:if value="${'$(arg variant)' == 'velocity'}">
+        <xacro:include filename="wcr_velocity.ros2_control.xacro"/>
+    </xacro:if>
+
+    <xacro:if value="${'$(arg variant)' == 'mimic'}">
+        <xacro:include filename="wcr_mimic.ros2_control.xacro"/>
+    </xacro:if>
+
+    <xacro:if value="${'$(arg variant)' == 'mix'}">
+        <xacro:include filename="wcr_mix.ros2_control.xacro"/>
+    </xacro:if>
+
+    <xacro:if value="${'$(arg variant)' == 'mock'}">
+        <xacro:include filename="mock_wcr_classic.ros2_control.xacro"/>
+    </xacro:if>
+
+</robot>

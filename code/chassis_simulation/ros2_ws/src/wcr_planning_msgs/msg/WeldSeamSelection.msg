@@ -1,0 +1,12 @@
+std_msgs/Header header
+string task_id
+uint64 sample_index
+uint32 candidate_count
+string selected_observation_id
+string mapped_seam_id
+float32 score
+float32 confidence
+float64 lateral_error_m
+bool valid
+bool switched
+string reason

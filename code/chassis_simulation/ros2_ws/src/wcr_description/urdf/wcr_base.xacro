@@ -1,0 +1,496 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <!-- xacro properties can be found in wcr_params.xacro -->
+    <xacro:macro name="inertial_properties" params="mass ixx iyy izz">
+        <inertial>
+            <mass value="${mass}"/>
+            <inertia ixx="${ixx}" ixy="0.0" ixz="0.0" iyy="${iyy}" iyz="0.0" izz="${izz}"/>
+        </inertial>
+    </xacro:macro>
+
+    <!-- BASE LINK -->
+
+    <link name="base_link">
+    </link>
+
+    <!-- OPTITRACK LINK -->
+
+    <joint name="optitrack_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="optitrack_link"/>
+        <origin xyz="0 0 0.120"/> <!--140 mjerenjem, 120 iz optitrack-a-->
+    </joint>
+
+
+    <link name="optitrack_link">
+    </link>
+
+    <!-- IMU LINK -->
+
+    <joint name="imu_joint" type="fixed">
+        <parent link="chassis_link"/>
+        <child link="imu_link"/>
+        <origin xyz="${imu_x} ${imu_y} ${imu_z}" rpy="${imu_roll} ${imu_pitch} ${imu_yaw}"/>
+    </joint> 
+
+
+    <link name="imu_link">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="0.05"/>
+            <inertia ixx="1e-5" ixy="0" ixz="0" iyy="1e-5" iyz="0" izz="1e-5"/>
+        </inertial>
+    </link>
+
+    <!-- BAROMETER LINK -->
+
+    <joint name="barometer_joint" type="fixed">
+        <parent link="chassis_link"/>
+        <child link="barometer_link"/>
+        <origin xyz="${barometer_x} ${barometer_y} ${barometer_z}" rpy="${barometer_roll} ${barometer_pitch} ${barometer_yaw}"/>
+    </joint>
+
+    <link name="barometer_link">
+    </link> 
+
+    <!-- T265 LINK -->
+
+    <joint name="camera_joint" type="fixed">
+        <parent link="chassis_link"/>
+        <child link="t265_link"/>
+        <origin xyz="${camera_x} ${camera_y} ${camera_z}" rpy="${camera_roll} ${camera_pitch} ${camera_yaw}"/>
+    </joint>
+
+
+    <link name="t265_link">
+    </link>
+
+    <!-- OPTICAL FLOW LINK -->
+
+    <joint name="optical_flow_joint" type="fixed">
+        <parent link="chassis_link"/>
+        <child link="optical_flow_link"/>
+        <origin xyz="${optical_flow_x} ${optical_flow_y} ${optical_flow_z}" rpy="${optical_flow_roll} ${optical_flow_pitch} ${optical_flow_yaw}"/>
+    </joint>
+
+    <link name="optical_flow_link">
+    </link>
+
+    <!-- T265 ODOM -->
+
+    <joint name="camera_odom_joint" type="fixed">
+        <parent link="chassis_link"/>
+        <child link="t265_odom_frame"/>
+        <origin xyz="${camera_x} ${camera_y} ${camera_z}" rpy="${camera_roll} ${camera_pitch} ${camera_yaw}"/>
+    </joint>
+
+
+    <link name="t265_odom_frame">
+    </link>
+
+    <!-- MARVELMIND LINK -->
+
+    <joint name="marvelmind_joint" type="fixed">
+        <parent link="chassis_link"/>
+        <child link="marvelmind_link"/>
+        <origin xyz="-0.1223 0.000 0.1205"/>
+    </joint>
+
+
+    <link name="marvelmind_link">
+    </link>
+
+    <!-- DISTANCE SENSOR LINK -->
+
+    <joint name="distance_sensor_joint" type="fixed">
+        <parent link="chassis_link"/>
+        <child link="distance_sensor_link"/>
+        <origin xyz="${distance_sensor_x} ${distance_sensor_y} ${distance_sensor_z}" rpy="${distance_sensor_roll} ${distance_sensor_pitch} ${distance_sensor_yaw}"/>
+    </joint>
+
+    <link name="distance_sensor_link">
+    </link>
+
+    <!-- CHASSIS LINK-->
+
+    <joint name="chassis_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis_link"/>
+        <origin xyz="0 0 ${chassis_z_offset}"/>
+    </joint>
+
+
+    <link name="chassis_link">
+    <xacro:inertial_properties mass="${chassis_mass}" ixx="${chassis_inertia}" iyy="${chassis_inertia}" izz="${chassis_inertia}"/>
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find wcr_description)/meshes/robotChassisNoProp.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+            <material name="gray"/>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find wcr_description)/meshes/robotChassisNoProp.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- EDF PROPELLER -->
+
+    <!-- CHASSIS MAGNETIC STRIPS -->
+
+    <joint name="left_magnetic_strip_joint" type="fixed">
+        <parent link="chassis_link"/>
+        <child link="left_magnetic_strip_link"/>
+        <origin xyz="0 ${magnetic_strip_y} ${magnetic_strip_z}"/>
+    </joint>
+
+    <link name="left_magnetic_strip_link">
+        <xacro:inertial_properties mass="0.05" ixx="1e-5" iyy="1e-5" izz="1e-5"/>
+        <visual>
+            <geometry>
+                <box size="${magnetic_strip_length} ${magnetic_strip_width} ${magnetic_strip_height}"/>
+            </geometry>
+            <material name="magnetic_strip"/>
+        </visual>
+        <collision>
+            <geometry>
+                <box size="${magnetic_strip_length} ${magnetic_strip_width} ${magnetic_strip_height}"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="right_magnetic_strip_joint" type="fixed">
+        <parent link="chassis_link"/>
+        <child link="right_magnetic_strip_link"/>
+        <origin xyz="0 -${magnetic_strip_y} ${magnetic_strip_z}"/>
+    </joint>
+
+    <link name="right_magnetic_strip_link">
+        <xacro:inertial_properties mass="0.05" ixx="1e-5" iyy="1e-5" izz="1e-5"/>
+        <visual>
+            <geometry>
+                <box size="${magnetic_strip_length} ${magnetic_strip_width} ${magnetic_strip_height}"/>
+            </geometry>
+            <material name="magnetic_strip"/>
+        </visual>
+        <collision>
+            <geometry>
+                <box size="${magnetic_strip_length} ${magnetic_strip_width} ${magnetic_strip_height}"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <xacro:if value="${propeller_control}">
+
+    <joint name="EDF_propeller_joint" type="continuous">
+        <parent link="chassis_link"/>
+        <child link="EDF_propeller_link"/>
+        <axis xyz="0 0 1"/>
+        <origin xyz="0 0 0"/>
+    </joint>
+
+    <link name="EDF_propeller_link">
+        <xacro:inertial_properties mass="${edf_mass}" ixx="${default_inertia}" iyy="${default_inertia}" izz="${default_inertia}"/>
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find wcr_description)/meshes/edfProp.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find wcr_description)/meshes/edfProp.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- PROPELLERS -->
+
+    <joint name="FL_propeller_joint" type="continuous">
+        <parent link="chassis_link"/>
+        <child link="FL_propeller_link"/>
+        <axis xyz="-1 0 0"/>
+        <origin xyz="${prop_x} ${prop_y} ${prop_height}"/>
+    </joint>
+
+    <link name="FL_propeller_link">
+        <xacro:inertial_properties mass="${prop_mass}" ixx="${default_inertia}" iyy="${default_inertia}" izz="${default_inertia}"/>
+        <visual>
+            <origin rpy="0 0 0" xyz="${prop_x} -${prop_y} -${prop_height}"/>
+            <geometry>
+                <mesh filename="file://$(find wcr_description)/meshes/prop9Inch.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+            <material name="turquoise"/>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="${prop_x} -${prop_y} -${prop_height}"/>
+            <geometry>
+                <mesh filename="file://$(find wcr_description)/meshes/prop9Inch.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="BL_propeller_joint" type="continuous">
+        <parent link="chassis_link"/>
+        <child link="BL_propeller_link"/>
+        <axis xyz="1 0 0"/>
+        <origin xyz="-${prop_x} ${prop_y} ${prop_height}"/>
+    </joint>
+
+    <link name="BL_propeller_link">
+        <xacro:inertial_properties mass="${prop_mass}" ixx="${default_inertia}" iyy="${default_inertia}" izz="${default_inertia}"/>
+        <visual>
+            <origin rpy="0 0 0" xyz="${prop_x} -${prop_y} -${prop_height}"/>
+            <geometry>
+                <mesh filename="file://$(find wcr_description)/meshes/prop9Inch.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+            <material name="turquoise"/>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="${prop_x} -${prop_y} -${prop_height}"/>
+            <geometry>
+                <mesh filename="file://$(find wcr_description)/meshes/prop9Inch.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="FR_propeller_joint" type="continuous">
+        <parent link="chassis_link"/>
+        <child link="FR_propeller_link"/>
+        <axis xyz="1 0 0"/>
+        <origin xyz="${prop_x} -${prop_y} ${prop_height}"/>
+    </joint>
+
+    <link name="FR_propeller_link">
+        <xacro:inertial_properties mass="${prop_mass}" ixx="${default_inertia}" iyy="${default_inertia}" izz="${default_inertia}"/>
+        <visual>
+            <origin rpy="0 0 ${pi}" xyz="-${prop_x} ${prop_y} -${prop_height}"/>
+            <geometry>
+                <mesh filename="file://$(find wcr_description)/meshes/prop9Inch.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+            <material name="turquoise"/>
+        </visual>
+        <collision>
+            <origin rpy="0 0 ${pi}" xyz="-${prop_x} ${prop_y} -${prop_height}"/>
+            <geometry>
+                <mesh filename="file://$(find wcr_description)/meshes/prop9Inch.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="BR_propeller_joint" type="continuous">
+        <parent link="chassis_link"/>
+        <child link="BR_propeller_link"/>
+        <axis xyz="-1 0 0"/>
+        <origin xyz="-${prop_x} -${prop_y} ${prop_height}"/>
+    </joint>
+
+    <link name="BR_propeller_link">
+        <xacro:inertial_properties mass="${prop_mass}" ixx="${default_inertia}" iyy="${default_inertia}" izz="${default_inertia}"/>
+        <visual>
+            <origin rpy="0 0 ${pi}" xyz="-${prop_x} ${prop_y} -${prop_height}"/>
+            <geometry>
+                <mesh filename="file://$(find wcr_description)/meshes/prop9Inch.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+            <material name="turquoise"/>
+        </visual>
+        <collision>
+            <origin rpy="0 0 ${pi}" xyz="-${prop_x} ${prop_y} -${prop_height}"/>
+            <geometry>
+                <mesh filename="file://$(find wcr_description)/meshes/prop9Inch.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+    </link>
+
+    </xacro:if>
+    <!-- FRONT LEFT SYSTEM -->
+    <joint name="FL_steering" type="revolute">
+        <limit effort="100.0" lower="${-pi/2}" upper="${pi/2}" velocity="5.23598775"/>
+        <parent link="chassis_link"/>
+        <child link="FL_steering_link"/>
+        <origin xyz="${length/2} ${width/2} ${steering_height}"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="FL_steering_link">
+        <xacro:inertial_properties mass="${steering_mass}" ixx="${default_inertia}" iyy="${default_inertia}" izz="${default_inertia}"/>
+        <visual>
+			<origin rpy="0 0 ${pi/2}" xyz="0 0 0"/>
+			<geometry>
+			    <mesh filename="file://$(find wcr_description)/meshes/activeWheel.stl" scale="0.001 0.001 0.001"/>
+			</geometry>
+			<material name="red"/>
+		</visual>
+        <collision>
+            <origin rpy="0 0 ${pi/2}" xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find wcr_description)/meshes/activeWheel.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="FL_wheel" type="continuous">
+			<axis xyz="0 1 0"/>
+			<limit effort="${wheel_effort}" velocity="${wheel_velocity}"/>
+			<origin xyz="0 0 ${wheel_height}"/>
+			<parent link="FL_steering_link"/>
+			<child link="FL_wheel_link"/>
+	</joint>
+
+    <link name="FL_wheel_link">
+        <xacro:inertial_properties mass="${wheel_mass}" ixx="${default_inertia}" iyy="${default_inertia}" izz="${default_inertia}"/>
+		<visual>
+            <origin rpy="${pi/2} 0 0" xyz="0 0 0"/>
+            <geometry><cylinder radius="${wheel_radius}" length="${wheel_width}"/></geometry>
+            <material name="magnetic_wheel"/>
+		</visual>
+		<collision>
+            <origin rpy="${pi/2} 0 0" xyz="0 0 0"/>
+            <geometry><cylinder radius="${wheel_radius}" length="${wheel_width}"/></geometry>
+        </collision>
+	</link>
+
+    <!-- BACK LEFT SYSTEM -->
+
+    <joint name="BL_steering" type="revolute">
+        <limit effort="100.0" lower="${-pi/2}" upper="${pi/2}" velocity="5.23598775"/>
+        <parent link="chassis_link"/>
+        <child link="BL_steering_link"/>
+        <origin xyz="-${length/2} ${width/2} ${steering_height}"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="BL_steering_link">
+        <xacro:inertial_properties mass="${steering_mass}" ixx="${default_inertia}" iyy="${default_inertia}" izz="${default_inertia}"/>
+        <visual>
+			<origin rpy="0 0 ${pi/2}" xyz="0 0 0"/>
+			<geometry>
+			    <mesh filename="file://$(find wcr_description)/meshes/activeWheel.stl" scale="0.001 0.001 0.001"/>
+			</geometry>
+			<material name="red"/>
+		</visual>
+        <collision>
+            <origin rpy="0 0 ${pi/2}" xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find wcr_description)/meshes/activeWheel.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="BL_wheel" type="continuous">
+		<axis xyz="0 1 0"/>
+		<limit effort="${wheel_effort}" velocity="${wheel_velocity}"/>
+		<origin xyz="0 0 ${wheel_height}"/>
+		<parent link="BL_steering_link"/>
+		<child link="BL_wheel_link"/>
+	</joint>
+
+    <link name="BL_wheel_link">
+        <xacro:inertial_properties mass="${wheel_mass}" ixx="${default_inertia}" iyy="${default_inertia}" izz="${default_inertia}"/>
+		<visual>
+            <origin rpy="${pi/2} 0 0" xyz="0 0 0"/>
+            <geometry><cylinder radius="${wheel_radius}" length="${wheel_width}"/></geometry>
+            <material name="magnetic_wheel"/>
+		</visual>
+		<collision>
+            <origin rpy="${pi/2} 0 0" xyz="0 0 0"/>
+            <geometry><cylinder radius="${wheel_radius}" length="${wheel_width}"/></geometry>
+		</collision>
+	</link>
+
+    <!-- BACK RIGHT SYSTEM-->
+
+    <joint name="BR_steering" type="revolute">
+        <limit effort="100.0" lower="${-pi/2}" upper="${pi/2}" velocity="5.23598775"/>
+        <parent link="chassis_link"/>
+        <child link="BR_steering_link"/>
+        <origin xyz="-${length/2} -${width/2} ${steering_height}"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="BR_steering_link">
+        <xacro:inertial_properties mass="${steering_mass}" ixx="${default_inertia}" iyy="${default_inertia}" izz="${default_inertia}"/>
+        <visual>
+			<origin rpy="0 0 -${pi/2}" xyz="0 0 0"/>
+			<geometry>
+			    <mesh filename="file://$(find wcr_description)/meshes/activeWheel.stl" scale="0.001 0.001 0.001"/>
+			</geometry>
+			<material name="red"/>
+		</visual>
+    </link>
+
+    <joint name="BR_wheel" type="continuous">
+        <axis xyz="0 1 0"/>
+        <limit effort="${wheel_effort}" velocity="${wheel_velocity}"/>
+        <origin xyz="0 0 ${wheel_height}"/>
+        <parent link="BR_steering_link"/>
+        <child link="BR_wheel_link"/>
+	</joint>
+
+    <link name="BR_wheel_link">
+        <xacro:inertial_properties mass="${wheel_mass}" ixx="${default_inertia}" iyy="${default_inertia}" izz="${default_inertia}"/>
+        <visual>
+            <origin rpy="${pi/2} 0 0" xyz="0 0 0"/>
+            <geometry><cylinder radius="${wheel_radius}" length="${wheel_width}"/></geometry>
+            <material name="magnetic_wheel"/>
+        </visual>
+        <collision>
+            <origin rpy="${pi/2} 0 0" xyz="0 0 0"/>
+            <geometry><cylinder radius="${wheel_radius}" length="${wheel_width}"/></geometry>
+        </collision>
+	</link>
+
+    <!-- FRONT RIGHT SYSTEM-->
+
+    <joint name="FR_steering" type="revolute">
+        <limit effort="100.0" lower="${-pi/2}" upper="${pi/2}" velocity="5.23598775"/>
+        <parent link="chassis_link"/>
+        <child link="FR_steering_link"/>
+        <origin xyz="${length/2} -${width/2} ${steering_height}"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="FR_steering_link">
+        <xacro:inertial_properties mass="${steering_mass}" ixx="${default_inertia}" iyy="${default_inertia}" izz="${default_inertia}"/>
+        <visual>
+			<origin rpy="0 0 -${pi/2}" xyz="0 0 0"/>
+			<geometry>
+			    <mesh filename="file://$(find wcr_description)/meshes/activeWheel.stl" scale="0.001 0.001 0.001"/>
+			</geometry>
+			<material name="red"/>
+		</visual>
+        <collision>
+			<origin rpy="0 ${pi/2} 0" xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="file://$(find wcr_description)/meshes/activeWheel.stl" scale="0.001 0.001 0.001"/>
+			</geometry>
+		</collision>
+    </link>
+
+    <joint name="FR_wheel" type="continuous">
+        <axis xyz="0 1 0"/>
+        <limit effort="${wheel_effort}" velocity="${wheel_velocity}"/>
+        <origin xyz="0 0 ${wheel_height}"/>
+        <parent link="FR_steering_link"/>
+        <child link="FR_wheel_link"/>
+	</joint>
+
+    <link name="FR_wheel_link">
+        <xacro:inertial_properties mass="${wheel_mass}" ixx="${default_inertia}" iyy="${default_inertia}" izz="${default_inertia}"/>
+		<visual>
+            <origin rpy="${pi/2} 0 0" xyz="0 0 0"/>
+            <geometry><cylinder radius="${wheel_radius}" length="${wheel_width}"/></geometry>
+            <material name="magnetic_wheel"/>
+		</visual>
+		<collision>
+            <origin rpy="${pi/2} 0 0" xyz="0 0 0"/>
+            <geometry><cylinder radius="${wheel_radius}" length="${wheel_width}"/></geometry>
+		</collision>
+	</link>
+</robot>

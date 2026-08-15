@@ -1,0 +1,11 @@
+std_msgs/Header header
+string task_id
+uint64 sample_index
+nav_msgs/Odometry odometry
+sensor_msgs/Imu imu
+wcr_planning_msgs/ProbeRailState rail_state
+float64 odometry_offset_s
+float64 imu_offset_s
+float64 rail_offset_s
+bool timing_valid
+string detail

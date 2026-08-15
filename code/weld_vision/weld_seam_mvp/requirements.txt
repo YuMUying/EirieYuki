@@ -1,0 +1,8 @@
+numpy>=1.26,<2.0
+opencv-contrib-python-headless>=4.8,<4.12
+PyYAML>=6.0
+typeguard>=4.4,<5.0
+torch>=2.2,<3.0
+onnx>=1.15,<2.0
+onnxscript>=0.5,<1.0
+onnxruntime>=1.17,<2.0

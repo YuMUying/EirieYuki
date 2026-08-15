@@ -1,0 +1,11 @@
+std_msgs/Header header
+float64 position_m
+float64 velocity_m_s
+float64 target_position_m
+bool enabled
+bool homed
+bool moving
+bool negative_limit
+bool positive_limit
+bool fault
+string fault_code

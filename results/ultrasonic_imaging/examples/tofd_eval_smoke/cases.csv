@@ -1,0 +1,4 @@
+case_id,truth_count,candidate_count,sized_defect_count,upper_tip_hits,lower_tip_hits,sized_defect_hits,false_sized_defects,processing_seconds
+case_0110,1,60,2,1,0,0,2,0.36709529999643564
+case_0111,1,9,1,1,1,1,0,0.38032370002474636
+case_0112,2,5,1,2,0,0,1,0.34934810001868755

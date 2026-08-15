@@ -1,0 +1,55 @@
+[
+  {
+    "case_id": "case_0110",
+    "truth_count": 1,
+    "candidate_count": 60,
+    "sized_defect_count": 2,
+    "upper_tip_hits": 1,
+    "lower_tip_hits": 0,
+    "sized_defect_hits": 0,
+    "upper_tip_errors_mm": [
+      0.20162594485799298
+    ],
+    "lower_tip_errors_mm": [],
+    "height_errors_mm": [],
+    "false_sized_defects": 2,
+    "processing_seconds": 0.36709529999643564
+  },
+  {
+    "case_id": "case_0111",
+    "truth_count": 1,
+    "candidate_count": 9,
+    "sized_defect_count": 1,
+    "upper_tip_hits": 1,
+    "lower_tip_hits": 1,
+    "sized_defect_hits": 1,
+    "upper_tip_errors_mm": [
+      0.09419485579916079
+    ],
+    "lower_tip_errors_mm": [
+      0.10016510861072223
+    ],
+    "height_errors_mm": [
+      0.007035201964085067
+    ],
+    "false_sized_defects": 0,
+    "processing_seconds": 0.38032370002474636
+  },
+  {
+    "case_id": "case_0112",
+    "truth_count": 2,
+    "candidate_count": 5,
+    "sized_defect_count": 1,
+    "upper_tip_hits": 2,
+    "lower_tip_hits": 0,
+    "sized_defect_hits": 0,
+    "upper_tip_errors_mm": [
+      0.04438235116411189,
+      0.1543007555691617
+    ],
+    "lower_tip_errors_mm": [],
+    "height_errors_mm": [],
+    "false_sized_defects": 1,
+    "processing_seconds": 0.34934810001868755
+  }
+]

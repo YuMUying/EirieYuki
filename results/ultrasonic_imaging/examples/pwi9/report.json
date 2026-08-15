@@ -1,0 +1,36 @@
+{
+  "method": "PWI coherent compounding",
+  "dataset_id": "figshare_7178636_pwi9_1mm_sdh_20mm",
+  "input_metadata": "E:\\Robot_Challenge_cup\\焊缝数据集\\Ultrasonic_Weld_Imaging\\raw\\calibration\\figshare_7178636_pwi9_1mm_sdh_20mm\\metadata.json",
+  "rf_shape": [
+    9,
+    64,
+    512
+  ],
+  "sample_rate_hz": 25000000.00000024,
+  "velocity_m_s": 6400.0,
+  "center_frequency_hz": 5000000.0,
+  "coherence_factor": false,
+  "grid": {
+    "x_min_mm": -20.0,
+    "x_max_mm": 20.0,
+    "z_min_mm": 5.0,
+    "z_max_mm": 30.0,
+    "pixel_mm": 0.25
+  },
+  "processing_seconds": 0.2545533999800682,
+  "limitations": [
+    "The result is an algorithm-development image, not a qualified inspection decision.",
+    "Material velocity, acoustic origin and wedge geometry require specimen-specific calibration."
+  ],
+  "peak": {
+    "x_mm": 0.0,
+    "z_mm": 21.0,
+    "db": 0.0
+  },
+  "output_files": [
+    "image.npz",
+    "image.png",
+    "report.json"
+  ]
+}

@@ -1,0 +1,7 @@
+wall_time,status
+0.0,waiting_for_mode_1_goal
+0.0,mode_2_curve
+0.0005982470174785703,planning_failed: waiting for reference_curve
+0.0010709670023061335,planning_failed: waiting for reference_curve
+0.002774502005195245,executing_mode_2: 6 waypoints; reference curve updated
+157.73429134002072,completed

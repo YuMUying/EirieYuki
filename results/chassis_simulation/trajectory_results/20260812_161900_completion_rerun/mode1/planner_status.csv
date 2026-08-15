@@ -1,0 +1,7 @@
+wall_time,status
+0.0,waiting_for_mode_1_goal
+0.0,mode_1_goal
+0.0,planning_failed: waiting for target_pose
+0.0015629590197931975,planning_failed: waiting for target_pose
+0.003405541996471584,executing_mode_1: 5 waypoints; goal updated
+145.76539276199765,completed

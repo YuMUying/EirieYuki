@@ -1,0 +1,93 @@
+# Gazebo Launch Parameters
+
+# Simulation mode
+sim: true
+
+# Automatic motion (simulation time in seconds)
+auto_drive: false
+auto_drive_speed: 0.128
+auto_drive_start_time: 2.0
+auto_drive_stop_time: 12.0
+
+# Robot variant (classic/effort/velocity/mimic/mix/mock)
+variant: "mock"
+namespace: "wcr"
+rviz: true
+rviz_config: "wcr_sensors.rviz"
+
+# Magnetic robot configuration
+propeller_control: false
+position_control: true
+trajectory_planning: true
+probe_rail_control: true
+seam_tracking_and_map: true
+probe_rail_mock_driver: true
+sensor_time_sync: true
+ins_fusion: true
+
+# Probe transverse rail; replace travel/speed after mechanical commissioning.
+probe_rail_minimum_position_m: -0.10
+probe_rail_maximum_position_m: 0.10
+probe_rail_maximum_velocity_m_s: 0.03
+probe_rail_maximum_acceleration_m_s2: 0.20
+probe_alignment_maximum_age_s: 0.15
+probe_alignment_minimum_confidence: 0.65
+probe_alignment_deadband_m: 0.0005
+probe_alignment_maximum_correction_step_m: 0.010
+probe_alignment_watchdog_s: 0.25
+
+# Multi-seam selection and persistent odom-plane map.
+seam_tracking_odometry_topic: "/wcr/ins/odometry"
+seam_tracking_maximum_odometry_offset_s: 0.10
+seam_tracking_minimum_candidate_points: 5
+seam_tracking_minimum_separation_m: 0.015
+seam_tracking_minimum_motion_speed_m_s: 0.01
+seam_tracking_lookahead_m: 0.08
+seam_tracking_maximum_lateral_error_m: 0.10
+seam_tracking_switch_score_margin: 0.12
+seam_map_association_distance_m: 0.04
+seam_map_association_angle_deg: 30.0
+probe_center_y_at_reference_m: 0.0
+environment_map_path: "~/.ros/wcr_environment_map.json"
+
+# Maximum nearest raw-sensor timestamp error for an inspection sample.
+inspection_context_maximum_offset_s: 0.005
+inspection_odometry_topic: "/wcr/ins/odometry"
+
+# Online trajectory planner (odom-plane units are metres/radians)
+default_planning_mode: 1
+planner_grid_resolution: 0.03
+planner_padding: 0.75
+planner_robot_radius: 0.18
+planner_safety_margin: 0.02
+planner_tracking_error_allowance: 0.05
+planner_waypoint_tolerance: 0.025
+planner_trajectory_sample_distance: 0.015
+planner_curve_smoothing_iterations: 3
+planner_curve_smoothing_weight: 0.20
+planner_max_trajectory_speed: 0.13
+planner_max_lateral_acceleration: 0.18
+planner_max_acceleration: 0.12
+planner_max_deceleration: 0.16
+planner_minimum_cruise_speed: 0.035
+controller_lookahead_distance: 0.045
+controller_lookahead_time: 0.30
+controller_max_position_correction_speed: 0.05
+controller_path_tracking_gain: 1.8
+
+# URDF file
+urdf_file: "wcr.urdf.xacro"
+
+# Gazebo settings
+use_sim_time: true
+# Wall inner surface is x=3.0 m. Pitch -pi/2 points chassis -Z toward it.
+spawn_x: 2.995
+spawn_y: 0.0
+spawn_z_height: 2.0
+spawn_roll: 0.0
+spawn_pitch: -1.57079632679
+spawn_yaw: 0.0
+gz_args: "-r -v4"
+
+# World file
+world_file: "ramp_world.sdf"

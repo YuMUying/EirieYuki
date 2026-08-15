@@ -1,0 +1,149 @@
+# Robot Physical Parameters Configuration
+
+# Geometry
+length: 0.225
+width: 0.225
+chassis_mass: 3.0
+chassis_inertia: 0.003
+
+# Sensor Mount Poses (m, rad)
+imu_x: 0.06551
+imu_y: 0.0
+imu_z: 0.098
+imu_roll: 0.0
+imu_pitch: 0.0
+imu_yaw: 0.0
+
+camera_x: 0.14885
+camera_y: 0.00922
+camera_z: 0.06659
+camera_roll: 0.0
+camera_pitch: 0.0
+camera_yaw: 0.0
+
+optical_flow_x: 0.06
+optical_flow_y: 0.0
+optical_flow_z: 0.095
+optical_flow_roll: 0.0
+optical_flow_pitch: 1.57079632679
+optical_flow_yaw: 0.0
+
+barometer_x: 0.06
+barometer_y: 0.0
+barometer_z: 0.1
+barometer_roll: 0.0
+barometer_pitch: 0.0
+barometer_yaw: 0.0
+
+distance_sensor_x: 0.16
+distance_sensor_y: 0.0
+distance_sensor_z: 0.05
+distance_sensor_roll: 0.0
+distance_sensor_pitch: 1.57079632679
+distance_sensor_yaw: 0.0
+
+# Front transverse ultrasonic probe rail (mechanical initial values).
+probe_rail_origin_x: 0.190
+probe_rail_origin_z: 0.110
+probe_rail_minimum: -0.100
+probe_rail_maximum: 0.100
+probe_rail_length: 0.240
+probe_camera_offset_x: 0.065
+probe_camera_offset_z: -0.020
+probe_acoustic_offset_z: -0.095
+
+# Sensor Rates (Hz)
+imu_rate_hz: 100.0
+camera_rate_hz: 30.0
+optical_flow_rate_hz: 50.0
+barometer_rate_hz: 25.0
+distance_rate_hz: 20.0
+
+# Sensor Noise (stddev)
+imu_gyro_stddev: 0.001
+imu_accel_stddev: 0.01
+camera_noise_stddev: 0.0005
+optical_flow_noise_stddev: 0.0005
+barometer_noise_stddev: 10.0
+distance_noise_stddev: 0.0005
+
+# Camera / Optical Flow Optics
+camera_width: 800
+camera_height: 800
+camera_hfov: 1.3962634
+optical_flow_width: 320
+optical_flow_height: 240
+optical_flow_hfov: 1.3962634
+
+# Distance Sensor Limits
+distance_min_m: 0.05
+distance_max_m: 5.0
+distance_resolution_m: 0.01
+
+# Barometer
+barometer_reference_altitude: 0.0
+
+# Thruster / Environment
+air_density: 1.225
+thruster_coefficient: 0.1
+propeller_diameter_main: 0.2286
+propeller_diameter_edf: 0.11
+
+# Steering System
+steering_height: 0.05029
+steering_mass: 0.1
+steering_effort: 1.9
+steering_velocity: 5.23598775 # default
+steering_i_xx: 0.00002
+steering_i_xy: 0.00000
+
+# Wheel System
+wheel_height: -0.035250
+wheel_mass: 0.1
+wheel_effort: 1.9
+wheel_velocity: 5.23598775 # original motor limit
+wheel_i_xx: 0.0002
+wheel_i_xy: 0.0001
+wheel_radius: 0.0254
+wheel_width: 0.018
+
+# Magnetic adhesion, based on the per-wheel force model in wall-climber
+magnet_wheel_force: 60.0
+magnet_strip_force: 35.0
+magnet_full_force_distance: 0.008
+magnet_release_distance: 0.20
+magnet_force_exponent: 2.0
+magnetic_strip_length: 0.16
+magnetic_strip_width: 0.014
+magnetic_strip_height: 0.006
+magnetic_strip_y: 0.090
+magnetic_strip_z: -0.003
+
+# Propeller System
+prop_x: 0.03561
+prop_y: 0.18981
+prop_height: 0.09991
+prop_mass: 0.015
+prop_effort: 1.0
+prop_velocity: 2800.0
+prop_limit_upper: -1e16
+prop_limit_lower: 1e16
+prop_i_xy: 0.0001
+prop_i_z: 0.0002
+max_thrust_cmd_propeller: 2800
+thrust_coefficient_propeller: 0.89
+
+
+# EDF System
+edf_mass: 0.1
+edf_effort: 100.0
+edf_velocity: 4500.0
+edf_limit_upper: -1e16
+edf_limit_lower: 1e16
+edf_i_xy: 0.001
+edf_i_z: 0.002
+max_thrust_cmd_edf: 4500
+thrust_coefficient_edf: 1.25
+
+# Testing/Default Values
+default_inertia: 0.001

@@ -1,0 +1,3 @@
+id,shape,center_x,center_y,radius,width,height,yaw,inflation,planning_inflation
+circle_center,circle,0.3,0.0,0.04,0.0,0.0,0.0,0.19999999999999998,0.25
+upper_box,rectangle,0.52,0.33,0.0,0.08,0.08,0.0,0.19999999999999998,0.25

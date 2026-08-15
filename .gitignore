@@ -1,0 +1,57 @@
+# Local archive and raw datasets
+archive/
+datasets/**
+!datasets/README.md
+!datasets/weld_vision/
+!datasets/weld_vision/WES-Combined-Dataset/
+!datasets/weld_vision/WES-Combined-Dataset/README.md
+!datasets/weld_vision/WES-Combined-Dataset/SOURCE_LICENSES.md
+!datasets/ultrasonic/
+!datasets/ultrasonic/Ultrasonic_Weld_Imaging/
+!datasets/ultrasonic/Ultrasonic_Weld_Imaging/README.md
+!datasets/ultrasonic/Ultrasonic_Weld_Imaging/MANIFEST.csv
+!datasets/ultrasonic/Ultrasonic_Weld_Imaging/docs/
+!datasets/ultrasonic/Ultrasonic_Weld_Imaging/docs/SOURCES.md
+!datasets/ultrasonic/Ultrasonic_Weld_Imaging/docs/EXCLUDED_SOURCES.md
+
+# Rebuildable and local working material
+/tmp/
+/tools/
+**/__pycache__/
+**/*.py[cod]
+**/.pytest_cache/
+**/*.egg-info/
+**/.venv/
+**/build/
+**/install/
+**/log/
+
+# Large or rebuildable result artifacts
+results/**/*.pt
+results/**/*.onnx
+results/**/*.onnx.data
+results/**/*.npz
+results/**/*.npy
+results/**/*.png
+results/**/*.jpg
+results/**/*.jpeg
+results/**/*.svg
+results/**/*.log
+results/**/robot_trajectory.csv
+results/**/planned_path.csv
+results/**/target_path.csv
+results/**/scratch/
+
+# Keep the final report only
+deliverables/*
+!deliverables/大型承压储罐爬壁式智能超声检测机器人技术研究与系统设计报告_系统集成与验收扩充版.docx
+
+# Reference documents retained locally
+/260809-高铁上水吸污机器人方案设计说明书-末端执行机构修订版.docx
+/CS-202621湖南安卓特种设备科技有限公司-大型承压储罐爬壁式智能超声检测机器人比赛方案.pdf
+
+# Local captures and editor/OS files
+code/weld_vision/weld_seam_mvp/captures/
+.vscode/
+.DS_Store
+Thumbs.db

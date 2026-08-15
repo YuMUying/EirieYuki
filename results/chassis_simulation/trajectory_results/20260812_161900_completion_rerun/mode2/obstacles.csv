@@ -1,0 +1,3 @@
+id,shape,center_x,center_y,radius,width,height,yaw,inflation
+curve_circle,circle,0.3,0.06,0.035,0.0,0.0,0.0,0.2
+lower_box,rectangle,0.55,-0.3,0.0,0.1,0.08,-0.3,0.2

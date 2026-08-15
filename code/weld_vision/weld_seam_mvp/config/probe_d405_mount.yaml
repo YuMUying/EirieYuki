@@ -1,0 +1,35 @@
+camera:
+  model: RealSense D405
+  role: probe_alignment
+  recommended_stream: 640x480@30
+frames:
+  camera: probe_camera_color_optical_frame
+  base: base_surface
+depth:
+  # Replace with the scale reported by the specific probe camera.
+  scale_m_per_unit: 0.001
+  min_m: 0.07
+  max_m: 0.25
+  neighborhood_radius_px: 2
+  min_valid_neighbors: 3
+  max_local_depth_mad_m: 0.008
+validation:
+  max_abs_surface_z_m: 0.020
+linear_mount:
+  enabled: true
+  # Rail moves transverse to robot motion: positive position is robot left.
+  axis_base: [0.0, 1.0, 0.0]
+  reference_position_m: 0.0
+# Mechanical initial value at rail reference/center only. Replace after hand-eye
+# calibration. Camera is normal to the wall, with image top toward robot +X.
+# base_surface: +X forward, +Y left, +Z away from wall.
+# camera optical: +X image right, +Y image down, +Z forward.
+transform_base_from_camera:
+  - [0.0, -1.0,  0.0, 0.255]
+  - [-1.0, 0.0,  0.0, 0.000]
+  - [0.0,  0.0, -1.0, 0.090]
+  - [0.0,  0.0,  0.0, 1.000]
+probe:
+  # Probe acoustic center Y at rail reference position; calibrate mechanically.
+  center_y_at_reference_m: 0.0
+  minimum_alignment_points: 5

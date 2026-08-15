@@ -1,0 +1,286 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <xacro:arg name="namespace" default="wcr_robot"/>
+    <xacro:arg name="variant" default="mock"/>         <!-- classic / effort / velocity / mimic / mix / mock-->
+    <xacro:arg name="sim" default="true"/>
+    <xacro:arg name="propeller_control" default="true"/>
+    <xacro:property name="namespace" value="$(arg namespace)" />
+    <xacro:property name="variant" value="$(arg variant)" />
+    <xacro:property name="sim" value="$(arg sim)" />
+    <xacro:property name="propeller_control" value="$(arg propeller_control)" />
+
+    <!-- ARGUMENTS -->
+
+    <!-- Geometry -->
+    <xacro:arg name="length" default="0.225"/>
+    <xacro:arg name="width" default="0.225"/>
+    <xacro:arg name="chassis_mass" default="3.0"/>
+    <xacro:arg name="chassis_inertia" default="0.003"/>
+    <xacro:arg name="chassis_z_offset" default="0.0103600017"/>
+
+    <!-- Sensor Mount Poses -->
+    <xacro:arg name="imu_x" default="0.06551"/>
+    <xacro:arg name="imu_y" default="0.0"/>
+    <xacro:arg name="imu_z" default="0.098"/>
+    <xacro:arg name="imu_roll" default="0.0"/>
+    <xacro:arg name="imu_pitch" default="0.0"/>
+    <xacro:arg name="imu_yaw" default="0.0"/>
+
+    <xacro:arg name="camera_x" default="0.14885"/>
+    <xacro:arg name="camera_y" default="0.00922"/>
+    <xacro:arg name="camera_z" default="0.06659"/>
+    <xacro:arg name="camera_roll" default="0.0"/>
+    <xacro:arg name="camera_pitch" default="0.0"/>
+    <xacro:arg name="camera_yaw" default="0.0"/>
+
+    <xacro:arg name="optical_flow_x" default="0.06"/>
+    <xacro:arg name="optical_flow_y" default="0.0"/>
+    <xacro:arg name="optical_flow_z" default="0.095"/>
+    <xacro:arg name="optical_flow_roll" default="0.0"/>
+    <xacro:arg name="optical_flow_pitch" default="-1.57079632679"/>
+    <xacro:arg name="optical_flow_yaw" default="0.0"/>
+
+    <xacro:arg name="barometer_x" default="0.06"/>
+    <xacro:arg name="barometer_y" default="0.0"/>
+    <xacro:arg name="barometer_z" default="0.1"/>
+    <xacro:arg name="barometer_roll" default="0.0"/>
+    <xacro:arg name="barometer_pitch" default="0.0"/>
+    <xacro:arg name="barometer_yaw" default="0.0"/>
+
+    <xacro:arg name="distance_sensor_x" default="0.16"/>
+    <xacro:arg name="distance_sensor_y" default="0.0"/>
+    <xacro:arg name="distance_sensor_z" default="0.05"/>
+    <xacro:arg name="distance_sensor_roll" default="0.0"/>
+    <xacro:arg name="distance_sensor_pitch" default="1.57079632679"/>
+    <xacro:arg name="distance_sensor_yaw" default="0.0"/>
+
+    <!-- Front transverse ultrasonic probe rail; mechanical initial values. -->
+    <xacro:arg name="probe_rail_origin_x" default="0.190"/>
+    <xacro:arg name="probe_rail_origin_z" default="0.110"/>
+    <xacro:arg name="probe_rail_minimum" default="-0.100"/>
+    <xacro:arg name="probe_rail_maximum" default="0.100"/>
+    <xacro:arg name="probe_rail_length" default="0.240"/>
+    <xacro:arg name="probe_camera_offset_x" default="0.065"/>
+    <xacro:arg name="probe_camera_offset_z" default="-0.020"/>
+    <xacro:arg name="probe_acoustic_offset_z" default="-0.095"/>
+
+    <!-- Sensor Rates -->
+    <xacro:arg name="imu_rate_hz" default="100.0"/>
+    <xacro:arg name="camera_rate_hz" default="30.0"/>
+    <xacro:arg name="optical_flow_rate_hz" default="50.0"/>
+    <xacro:arg name="barometer_rate_hz" default="25.0"/>
+    <xacro:arg name="distance_rate_hz" default="20.0"/>
+
+    <!-- Sensor Noise -->
+    <xacro:arg name="imu_gyro_stddev" default="0.001"/>
+    <xacro:arg name="imu_accel_stddev" default="0.01"/>
+    <xacro:arg name="camera_noise_stddev" default="0.0005"/>
+    <xacro:arg name="optical_flow_noise_stddev" default="0.0005"/>
+    <xacro:arg name="barometer_noise_stddev" default="10.0"/>
+    <xacro:arg name="distance_noise_stddev" default="0.0005"/>
+
+    <!-- Camera / Optical Flow -->
+    <xacro:arg name="camera_width" default="800"/>
+    <xacro:arg name="camera_height" default="800"/>
+    <xacro:arg name="camera_hfov" default="1.3962634"/>
+    <xacro:arg name="optical_flow_width" default="320"/>
+    <xacro:arg name="optical_flow_height" default="240"/>
+    <xacro:arg name="optical_flow_hfov" default="1.3962634"/>
+
+    <!-- Distance Sensor -->
+    <xacro:arg name="distance_min_m" default="0.05"/>
+    <xacro:arg name="distance_max_m" default="5.0"/>
+    <xacro:arg name="distance_resolution_m" default="0.01"/>
+
+    <!-- Barometer -->
+    <xacro:arg name="barometer_reference_altitude" default="0.0"/>
+
+    <!-- Thruster / Environment -->
+    <xacro:arg name="air_density" default="1.225"/>
+    <xacro:arg name="thruster_coefficient" default="0.1"/>
+    <xacro:arg name="propeller_diameter_main" default="0.2286"/>
+    <xacro:arg name="propeller_diameter_edf" default="0.11"/>
+    
+    <!-- Steering -->
+    <xacro:arg name="steering_height" default="0.05029"/>
+    <xacro:arg name="steering_mass" default="0.1"/>
+    <xacro:arg name="steering_effort" default="5.0"/>
+    <xacro:arg name="steering_velocity" default="5.23598775"/>
+    <xacro:arg name="steering_i_xx" default="0.0001"/>
+    <xacro:arg name="steering_i_xy" default="0.0001"/>
+
+    <!-- Wheel -->
+    <xacro:arg name="wheel_height" default="-0.035250"/>
+    <xacro:arg name="wheel_mass" default="0.1"/>
+    <xacro:arg name="wheel_effort" default="100.0"/>
+    <xacro:arg name="wheel_velocity" default="5.23598775"/>
+    <xacro:arg name="wheel_i_xx" default="0.0002"/>
+    <xacro:arg name="wheel_i_xy" default="0.0001"/>
+    <xacro:arg name="wheel_radius" default="0.0254"/>
+    <xacro:arg name="wheel_width" default="0.018"/>
+
+    <!-- Magnetic adhesion -->
+    <xacro:arg name="magnet_wheel_force" default="60.0"/>
+    <xacro:arg name="magnet_strip_force" default="35.0"/>
+    <xacro:arg name="magnet_full_force_distance" default="0.008"/>
+    <xacro:arg name="magnet_release_distance" default="0.20"/>
+    <xacro:arg name="magnet_force_exponent" default="2.0"/>
+    <xacro:arg name="magnetic_strip_length" default="0.16"/>
+    <xacro:arg name="magnetic_strip_width" default="0.014"/>
+    <xacro:arg name="magnetic_strip_height" default="0.006"/>
+    <xacro:arg name="magnetic_strip_y" default="0.090"/>
+    <xacro:arg name="magnetic_strip_z" default="-0.003"/>
+    
+    <!-- Propeller -->
+    <xacro:arg name="prop_x" default="0.03561"/>
+    <xacro:arg name="prop_y" default="0.18981"/>
+    <xacro:arg name="prop_height" default="0.09991"/>
+    <xacro:arg name="prop_mass" default="0.015"/>
+    <xacro:arg name="prop_effort" default="1.0"/>
+    <xacro:arg name="prop_velocity" default="1000.0"/>
+    <xacro:arg name="prop_limit_upper" default="-1e16"/>
+    <xacro:arg name="prop_limit_lower" default="1e16"/>
+    <xacro:arg name="prop_i_xy" default="0.0001"/>
+    <xacro:arg name="prop_i_z" default="0.0002"/>
+
+    <!-- EDF System -->
+    <xacro:arg name="edf_mass" default="0.1"/>
+    <xacro:arg name="edf_effort" default="100.0"/>
+    <xacro:arg name="edf_velocity" default="1000.0"/>
+    <xacro:arg name="edf_limit_upper" default="-1e16"/>
+    <xacro:arg name="edf_limit_lower" default="1e16"/>
+    <xacro:arg name="edf_i_xy" default="0.001"/>
+    <xacro:arg name="edf_i_z" default="0.002"/>
+
+    <!-- Testing -->
+    <xacro:arg name="default_inertia" default="0.001"/>
+
+    <!-- GEOMETRY PARAMETERS -->
+
+    <xacro:property name="length" value="$(arg length)" />
+	<xacro:property name="width" value="$(arg width)" />
+    <xacro:property name="chassis_mass" value="$(arg chassis_mass)"/>
+    <xacro:property name="chassis_inertia" value="$(arg chassis_inertia)"/>
+    <xacro:property name="chassis_z_offset" value="$(arg chassis_z_offset)"/>
+
+    <!-- SENSOR MOUNT POSE PARAMETERS -->
+    <xacro:property name="imu_x" value="$(arg imu_x)"/>
+    <xacro:property name="imu_y" value="$(arg imu_y)"/>
+    <xacro:property name="imu_z" value="$(arg imu_z)"/>
+    <xacro:property name="imu_roll" value="$(arg imu_roll)"/>
+    <xacro:property name="imu_pitch" value="$(arg imu_pitch)"/>
+    <xacro:property name="imu_yaw" value="$(arg imu_yaw)"/>
+
+    <xacro:property name="camera_x" value="$(arg camera_x)"/>
+    <xacro:property name="camera_y" value="$(arg camera_y)"/>
+    <xacro:property name="camera_z" value="$(arg camera_z)"/>
+    <xacro:property name="camera_roll" value="$(arg camera_roll)"/>
+    <xacro:property name="camera_pitch" value="$(arg camera_pitch)"/>
+    <xacro:property name="camera_yaw" value="$(arg camera_yaw)"/>
+
+    <xacro:property name="optical_flow_x" value="$(arg optical_flow_x)"/>
+    <xacro:property name="optical_flow_y" value="$(arg optical_flow_y)"/>
+    <xacro:property name="optical_flow_z" value="$(arg optical_flow_z)"/>
+    <xacro:property name="optical_flow_roll" value="$(arg optical_flow_roll)"/>
+    <xacro:property name="optical_flow_pitch" value="$(arg optical_flow_pitch)"/>
+    <xacro:property name="optical_flow_yaw" value="$(arg optical_flow_yaw)"/>
+
+    <xacro:property name="barometer_x" value="$(arg barometer_x)"/>
+    <xacro:property name="barometer_y" value="$(arg barometer_y)"/>
+    <xacro:property name="barometer_z" value="$(arg barometer_z)"/>
+    <xacro:property name="barometer_roll" value="$(arg barometer_roll)"/>
+    <xacro:property name="barometer_pitch" value="$(arg barometer_pitch)"/>
+    <xacro:property name="barometer_yaw" value="$(arg barometer_yaw)"/>
+
+    <xacro:property name="distance_sensor_x" value="$(arg distance_sensor_x)"/>
+    <xacro:property name="distance_sensor_y" value="$(arg distance_sensor_y)"/>
+    <xacro:property name="distance_sensor_z" value="$(arg distance_sensor_z)"/>
+    <xacro:property name="distance_sensor_roll" value="$(arg distance_sensor_roll)"/>
+    <xacro:property name="distance_sensor_pitch" value="$(arg distance_sensor_pitch)"/>
+    <xacro:property name="distance_sensor_yaw" value="$(arg distance_sensor_yaw)"/>
+
+    <xacro:property name="probe_rail_origin_x" value="$(arg probe_rail_origin_x)"/>
+    <xacro:property name="probe_rail_origin_z" value="$(arg probe_rail_origin_z)"/>
+    <xacro:property name="probe_rail_minimum" value="$(arg probe_rail_minimum)"/>
+    <xacro:property name="probe_rail_maximum" value="$(arg probe_rail_maximum)"/>
+    <xacro:property name="probe_rail_length" value="$(arg probe_rail_length)"/>
+    <xacro:property name="probe_camera_offset_x" value="$(arg probe_camera_offset_x)"/>
+    <xacro:property name="probe_camera_offset_z" value="$(arg probe_camera_offset_z)"/>
+    <xacro:property name="probe_acoustic_offset_z" value="$(arg probe_acoustic_offset_z)"/>
+
+    <!-- SENSOR CONFIG PARAMETERS -->
+    <xacro:property name="imu_rate_hz" value="$(arg imu_rate_hz)"/>
+    <xacro:property name="camera_rate_hz" value="$(arg camera_rate_hz)"/>
+    <xacro:property name="optical_flow_rate_hz" value="$(arg optical_flow_rate_hz)"/>
+    <xacro:property name="barometer_rate_hz" value="$(arg barometer_rate_hz)"/>
+    <xacro:property name="distance_rate_hz" value="$(arg distance_rate_hz)"/>
+
+    <xacro:property name="imu_gyro_stddev" value="$(arg imu_gyro_stddev)"/>
+    <xacro:property name="imu_accel_stddev" value="$(arg imu_accel_stddev)"/>
+    <xacro:property name="camera_noise_stddev" value="$(arg camera_noise_stddev)"/>
+    <xacro:property name="optical_flow_noise_stddev" value="$(arg optical_flow_noise_stddev)"/>
+    <xacro:property name="barometer_noise_stddev" value="$(arg barometer_noise_stddev)"/>
+    <xacro:property name="distance_noise_stddev" value="$(arg distance_noise_stddev)"/>
+
+    <xacro:property name="camera_width" value="$(arg camera_width)"/>
+    <xacro:property name="camera_height" value="$(arg camera_height)"/>
+    <xacro:property name="camera_hfov" value="$(arg camera_hfov)"/>
+    <xacro:property name="optical_flow_width" value="$(arg optical_flow_width)"/>
+    <xacro:property name="optical_flow_height" value="$(arg optical_flow_height)"/>
+    <xacro:property name="optical_flow_hfov" value="$(arg optical_flow_hfov)"/>
+
+    <xacro:property name="distance_min_m" value="$(arg distance_min_m)"/>
+    <xacro:property name="distance_max_m" value="$(arg distance_max_m)"/>
+    <xacro:property name="distance_resolution_m" value="$(arg distance_resolution_m)"/>
+    <xacro:property name="barometer_reference_altitude" value="$(arg barometer_reference_altitude)"/>
+
+    <xacro:property name="air_density" value="$(arg air_density)"/>
+    <xacro:property name="thruster_coefficient" value="$(arg thruster_coefficient)"/>
+    <xacro:property name="propeller_diameter_main" value="$(arg propeller_diameter_main)"/>
+    <xacro:property name="propeller_diameter_edf" value="$(arg propeller_diameter_edf)"/>
+
+    <!-- STEERING PARAMETERS -->
+
+	<xacro:property name="steering_height" value="$(arg steering_height)" /> 
+    <xacro:property name="steering_mass" value="$(arg steering_mass)" />
+    <xacro:property name="steering_effort" value="$(arg steering_effort)" />
+    <xacro:property name="steering_velocity" value="$(arg steering_velocity)" />
+    <xacro:property name="steering_i_xx" value="$(arg steering_i_xx)" />
+    <xacro:property name="steering_i_xy" value="$(arg steering_i_xy)" />
+
+    <!-- WHEEL PARAMETERS -->
+	<xacro:property name="wheel_height" value="$(arg wheel_height)" />
+    <xacro:property name="wheel_mass" value="$(arg wheel_mass)" />
+    <xacro:property name="wheel_effort" value="$(arg wheel_effort)" />
+    <xacro:property name="wheel_velocity" value="$(arg wheel_velocity)" />
+    <xacro:property name="wheel_i_xx" value="$(arg wheel_i_xx)" />
+    <xacro:property name="wheel_i_xy" value="$(arg wheel_i_xy)" />
+    <xacro:property name="wheel_radius" value="$(arg wheel_radius)" />
+    <xacro:property name="wheel_width" value="$(arg wheel_width)" />
+
+    <!-- MAGNETIC ADHESION PARAMETERS -->
+    <xacro:property name="magnet_wheel_force" value="$(arg magnet_wheel_force)" />
+    <xacro:property name="magnet_strip_force" value="$(arg magnet_strip_force)" />
+    <xacro:property name="magnet_full_force_distance" value="$(arg magnet_full_force_distance)" />
+    <xacro:property name="magnet_release_distance" value="$(arg magnet_release_distance)" />
+    <xacro:property name="magnet_force_exponent" value="$(arg magnet_force_exponent)" />
+    <xacro:property name="magnetic_strip_length" value="$(arg magnetic_strip_length)" />
+    <xacro:property name="magnetic_strip_width" value="$(arg magnetic_strip_width)" />
+    <xacro:property name="magnetic_strip_height" value="$(arg magnetic_strip_height)" />
+    <xacro:property name="magnetic_strip_y" value="$(arg magnetic_strip_y)" />
+    <xacro:property name="magnetic_strip_z" value="$(arg magnetic_strip_z)" />
+    
+    <!-- PROPELLER PARAMETERS -->
+
+    <xacro:property name="prop_x" value="$(arg prop_x)" />
+    <xacro:property name="prop_y" value="$(arg prop_y)" />
+    <xacro:property name="prop_height" value="$(arg prop_height)" />
+    <xacro:property name="prop_mass" value="$(arg prop_mass)" />
+    <xacro:property name="edf_mass" value="$(arg edf_mass)" />
+
+    <!-- TESTING PARAMETERS -->
+
+    <xacro:property name="default_inertia" value="$(arg default_inertia)" />
+
+</robot>

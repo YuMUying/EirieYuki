@@ -1,0 +1,2 @@
+# Install after librealsense/udev setup on the target Linux system.
+pyrealsense2>=2.55,<3.0

@@ -1,0 +1,27 @@
+camera:
+  model: RealSense D405
+  recommended_stream: 1280x720@30
+frames:
+  camera: camera_color_optical_frame
+  base: base_surface
+depth:
+  # RealSense Z16 commonly uses 0.001 m/unit, but read the actual device scale.
+  scale_m_per_unit: 0.001
+  min_m: 0.07
+  max_m: 0.50
+  neighborhood_radius_px: 3
+  min_valid_neighbors: 3
+  max_local_depth_mad_m: 0.015
+validation:
+  # Wall-relative Z should be near zero. Set null for curved surfaces.
+  max_abs_surface_z_m: 0.035
+# Mechanical design initial value only. Replace after camera-to-robot calibration.
+# base_surface: +X forward, +Y left, +Z away from the wall.
+# camera optical: +X image right, +Y image down, +Z forward.
+# Optical center in base: [0.135, 0.000, 0.200] m.
+# Optical axis: 35 degrees from wall normal toward robot +X.
+transform_base_from_camera:
+  - [0.000000000, -0.819152044,  0.573576436, 0.135]
+  - [-1.000000000, 0.000000000,  0.000000000, 0.000]
+  - [0.000000000, -0.573576436, -0.819152044, 0.200]
+  - [0.000000000, 0.000000000, 0.000000000, 1.000]

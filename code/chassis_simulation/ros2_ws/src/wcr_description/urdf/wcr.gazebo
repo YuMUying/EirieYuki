@@ -1,0 +1,298 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <gazebo>
+    <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+      <ros>
+        <namespace>$(arg namespace)</namespace>
+      </ros>
+      <robot_param>robot_description</robot_param>
+      <robot_param_node>robot_state_publisher</robot_param_node>
+      <parameters>$(find wcr_launcher)/config/wcr_controller.yaml</parameters>
+      <controller_manager_name>controller_manager</controller_manager_name>
+    </plugin>
+    <xacro:if value="${propeller_control}">
+    <plugin filename="ignition-gazebo-thruster-system" name="ignition::gazebo::systems::Thruster">
+      <namespace>$(arg namespace)</namespace>
+      <joint_name>EDF_propeller_joint</joint_name>
+      <thrust_coefficient>$(arg thrust_coefficient_edf)</thrust_coefficient>
+      <fluid_density>1.225</fluid_density>
+      <propeller_diameter>0.069</propeller_diameter>
+      <velocity_control>true</velocity_control>
+      <max_thrust_cmd>$(arg max_thrust_cmd_edf)</max_thrust_cmd>
+    </plugin>
+    <plugin filename="ignition-gazebo-thruster-system" name="ignition::gazebo::systems::Thruster">
+      <namespace>$(arg namespace)</namespace>
+      <joint_name>FL_propeller_joint</joint_name>
+      <thrust_coefficient>$(arg thrust_coefficient_propeller)</thrust_coefficient>
+      <fluid_density>1.225</fluid_density>
+      <propeller_diameter>0.2286</propeller_diameter>
+      <velocity_control>true</velocity_control>
+      <max_thrust_cmd>$(arg max_thrust_cmd_propeller)</max_thrust_cmd>
+    </plugin>
+
+    </xacro:if>
+    <plugin filename="libwcr_magnetic_adhesion_system.so" name="wcr::sim::MagneticAdhesionSystem">
+      <!-- Gazebo merges chassis_link into base_link across the fixed joint. -->
+      <link_name>base_link</link_name>
+      <magnet>
+        <name>front_left_wheel</name>
+        <topic>/$(arg namespace)/magnets/front_left/range</topic>
+        <position>${length/2} ${width/2} ${chassis_z_offset + steering_height + wheel_height}</position>
+        <max_force>${magnet_wheel_force}</max_force>
+        <full_force_distance>${magnet_full_force_distance}</full_force_distance>
+        <release_distance>${magnet_release_distance}</release_distance>
+        <force_exponent>${magnet_force_exponent}</force_exponent>
+      </magnet>
+      <magnet>
+        <name>back_left_wheel</name>
+        <topic>/$(arg namespace)/magnets/back_left/range</topic>
+        <position>-${length/2} ${width/2} ${chassis_z_offset + steering_height + wheel_height}</position>
+        <max_force>${magnet_wheel_force}</max_force>
+        <full_force_distance>${magnet_full_force_distance}</full_force_distance>
+        <release_distance>${magnet_release_distance}</release_distance>
+        <force_exponent>${magnet_force_exponent}</force_exponent>
+      </magnet>
+      <magnet>
+        <name>back_right_wheel</name>
+        <topic>/$(arg namespace)/magnets/back_right/range</topic>
+        <position>-${length/2} -${width/2} ${chassis_z_offset + steering_height + wheel_height}</position>
+        <max_force>${magnet_wheel_force}</max_force>
+        <full_force_distance>${magnet_full_force_distance}</full_force_distance>
+        <release_distance>${magnet_release_distance}</release_distance>
+        <force_exponent>${magnet_force_exponent}</force_exponent>
+      </magnet>
+      <magnet>
+        <name>front_right_wheel</name>
+        <topic>/$(arg namespace)/magnets/front_right/range</topic>
+        <position>${length/2} -${width/2} ${chassis_z_offset + steering_height + wheel_height}</position>
+        <max_force>${magnet_wheel_force}</max_force>
+        <full_force_distance>${magnet_full_force_distance}</full_force_distance>
+        <release_distance>${magnet_release_distance}</release_distance>
+        <force_exponent>${magnet_force_exponent}</force_exponent>
+      </magnet>
+      <magnet>
+        <name>left_chassis_strip</name>
+        <topic>/$(arg namespace)/magnets/left_strip/range</topic>
+        <position>0 ${magnetic_strip_y} ${chassis_z_offset + magnetic_strip_z}</position>
+        <max_force>${magnet_strip_force}</max_force>
+        <full_force_distance>${magnet_full_force_distance}</full_force_distance>
+        <release_distance>${magnet_release_distance}</release_distance>
+        <force_exponent>${magnet_force_exponent}</force_exponent>
+      </magnet>
+      <magnet>
+        <name>right_chassis_strip</name>
+        <topic>/$(arg namespace)/magnets/right_strip/range</topic>
+        <position>0 -${magnetic_strip_y} ${chassis_z_offset + magnetic_strip_z}</position>
+        <max_force>${magnet_strip_force}</max_force>
+        <full_force_distance>${magnet_full_force_distance}</full_force_distance>
+        <release_distance>${magnet_release_distance}</release_distance>
+        <force_exponent>${magnet_force_exponent}</force_exponent>
+      </magnet>
+    </plugin>
+    <xacro:if value="${propeller_control}">
+    <plugin filename="ignition-gazebo-thruster-system" name="ignition::gazebo::systems::Thruster">
+      <namespace>$(arg namespace)</namespace>
+      <joint_name>FR_propeller_joint</joint_name>
+      <thrust_coefficient>$(arg thrust_coefficient_propeller)</thrust_coefficient>
+      <fluid_density>1.225</fluid_density>
+      <propeller_diameter>0.2286</propeller_diameter>
+      <velocity_control>true</velocity_control>
+      <max_thrust_cmd>$(arg max_thrust_cmd_propeller)</max_thrust_cmd>
+    </plugin>
+    <plugin filename="ignition-gazebo-thruster-system" name="ignition::gazebo::systems::Thruster">
+      <namespace>$(arg namespace)</namespace>
+      <joint_name>BL_propeller_joint</joint_name>
+      <thrust_coefficient>$(arg thrust_coefficient_propeller)</thrust_coefficient>
+      <fluid_density>1.225</fluid_density>
+      <propeller_diameter>0.2286</propeller_diameter>
+      <velocity_control>true</velocity_control>
+      <max_thrust_cmd>$(arg max_thrust_cmd_propeller)</max_thrust_cmd>
+    </plugin>
+    <plugin filename="ignition-gazebo-thruster-system" name="ignition::gazebo::systems::Thruster">
+      <namespace>$(arg namespace)</namespace>
+      <joint_name>BR_propeller_joint</joint_name>
+      <thrust_coefficient>$(arg thrust_coefficient_propeller)</thrust_coefficient>
+      <fluid_density>1.225</fluid_density>
+      <propeller_diameter>0.2286</propeller_diameter>
+      <velocity_control>true</velocity_control>
+      <max_thrust_cmd>$(arg max_thrust_cmd_propeller)</max_thrust_cmd>
+    </plugin>
+    </xacro:if>
+  </gazebo>
+
+  <xacro:macro name="magnet_range_sensor" params="reference name topic x y z">
+    <gazebo reference="${reference}">
+      <sensor name="${name}" type="gpu_lidar">
+        <!-- Gazebo lidar rays point along sensor +X; pitch +90 deg aims them along link -Z. -->
+        <pose>${x} ${y} ${z} 0 ${pi/2} 0</pose>
+        <update_rate>100</update_rate>
+        <always_on>true</always_on>
+        <visualize>false</visualize>
+        <topic>${topic}</topic>
+        <lidar>
+          <scan>
+            <horizontal>
+              <samples>1</samples>
+              <resolution>1</resolution>
+              <min_angle>0</min_angle>
+              <max_angle>0</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.001</min>
+            <max>${magnet_release_distance}</max>
+            <resolution>0.0005</resolution>
+          </range>
+        </lidar>
+      </sensor>
+    </gazebo>
+  </xacro:macro>
+
+  <!-- Wheel sensors are attached to steering links, so steering yaw is
+       followed while wheel spin cannot rotate the attraction normal. -->
+  <xacro:magnet_range_sensor reference="FL_steering_link" name="front_left_magnet_range"
+    topic="/$(arg namespace)/magnets/front_left/range" x="0" y="0" z="${wheel_height - wheel_radius + 0.002}"/>
+  <xacro:magnet_range_sensor reference="BL_steering_link" name="back_left_magnet_range"
+    topic="/$(arg namespace)/magnets/back_left/range" x="0" y="0" z="${wheel_height - wheel_radius + 0.002}"/>
+  <xacro:magnet_range_sensor reference="BR_steering_link" name="back_right_magnet_range"
+    topic="/$(arg namespace)/magnets/back_right/range" x="0" y="0" z="${wheel_height - wheel_radius + 0.002}"/>
+  <xacro:magnet_range_sensor reference="FR_steering_link" name="front_right_magnet_range"
+    topic="/$(arg namespace)/magnets/front_right/range" x="0" y="0" z="${wheel_height - wheel_radius + 0.002}"/>
+  <xacro:magnet_range_sensor reference="left_magnetic_strip_link" name="left_strip_magnet_range"
+    topic="/$(arg namespace)/magnets/left_strip/range" x="0" y="0" z="-${magnetic_strip_height/2 - 0.001}"/>
+  <xacro:magnet_range_sensor reference="right_magnetic_strip_link" name="right_strip_magnet_range"
+    topic="/$(arg namespace)/magnets/right_strip/range" x="0" y="0" z="-${magnetic_strip_height/2 - 0.001}"/>
+
+  <gazebo reference="FL_wheel_link"><mu1>0.9</mu1><mu2>0.9</mu2></gazebo>
+  <gazebo reference="BL_wheel_link"><mu1>0.9</mu1><mu2>0.9</mu2></gazebo>
+  <gazebo reference="BR_wheel_link"><mu1>0.9</mu1><mu2>0.9</mu2></gazebo>
+  <gazebo reference="FR_wheel_link"><mu1>0.9</mu1><mu2>0.9</mu2></gazebo>
+  <gazebo reference="imu_link">
+    <sensor name="imu_sensor" type="imu">
+      <update_rate>100</update_rate>
+      <always_on>true</always_on>
+      <topic>/$(arg namespace)/imu</topic>
+      <visualize>true</visualize>
+      <imu>
+          <angular_velocity>
+              <noise type="gaussian">
+                  <mean>0.0</mean>
+                  <stddev>0.001</stddev>
+              </noise>
+          </angular_velocity>
+          <linear_acceleration>
+              <noise type="gaussian">
+                  <mean>0.0</mean>
+                  <stddev>0.01</stddev>
+              </noise>
+          </linear_acceleration>
+      </imu>
+      <plugin filename="libignition-gazebo-imu-system.so" name="ignition::gazebo::systems::Imu">
+      </plugin>
+      <gz_frame_id>imu_link</gz_frame_id>
+    </sensor>
+  </gazebo>
+  <gazebo reference="t265_link">
+    <sensor type="camera" name="t265_camera">
+      <update_rate>30.0</update_rate>
+      <always_on>true</always_on>
+      <topic>/$(arg namespace)/camera</topic>
+      <visualize>true</visualize>
+      <camera name="t265">
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>800</width>
+          <height>800</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.02</near>
+          <far>300</far>
+        </clip>
+        <noise>
+          <type>gaussian</type>
+          <!-- Noise is sampled independently per pixel on each frame.
+               That pixel's noise value is added to each of its color
+               channels, which at that point lie in the range [0,1]. -->
+          <mean>0.0</mean>
+          <stddev>0.0005</stddev>
+        </noise>
+      </camera>
+      <gz_frame_id>t265_link</gz_frame_id>
+    </sensor>
+  </gazebo>
+  <gazebo reference="optical_flow_link">
+    <sensor type="camera" name="optical_flow_camera">
+      <update_rate>50.0</update_rate>
+      <always_on>true</always_on>
+      <topic>/$(arg namespace)/optical_flow/image_raw</topic>
+      <visualize>false</visualize>
+      <camera name="optical_flow">
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>320</width>
+          <height>240</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.02</near>
+          <far>100</far>
+        </clip>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.0005</stddev>
+        </noise>
+      </camera>
+      <gz_frame_id>optical_flow_link</gz_frame_id>
+    </sensor>
+  </gazebo>
+  <gazebo reference="barometer_link">
+    <sensor name="barometer_sensor" type="air_pressure">
+      <update_rate>25</update_rate>
+      <always_on>true</always_on>
+      <topic>/$(arg namespace)/pressure</topic>
+      <visualize>false</visualize>
+      <air_pressure>
+        <reference_altitude>0</reference_altitude>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>10.0</stddev>
+        </noise>
+      </air_pressure>
+      <plugin filename="libignition-gazebo-air-pressure-system.so" name="ignition::gazebo::systems::AirPressure">
+      </plugin>
+      <gz_frame_id>barometer_link</gz_frame_id>
+    </sensor>
+  </gazebo>
+  <gazebo reference="distance_sensor_link">
+    <sensor name="distance_sensor" type="gpu_lidar">
+      <update_rate>20</update_rate>
+      <always_on>true</always_on>
+      <topic>/$(arg namespace)/distance</topic>
+      <visualize>true</visualize>
+      <lidar>
+        <scan>
+          <horizontal>
+            <samples>1</samples>
+            <resolution>1</resolution>
+            <min_angle>0</min_angle>
+            <max_angle>0</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.05</min>
+          <max>5.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.0005</stddev>
+        </noise>
+      </lidar>
+      <gz_frame_id>distance_sensor_link</gz_frame_id>
+    </sensor>
+  </gazebo>
+</robot>

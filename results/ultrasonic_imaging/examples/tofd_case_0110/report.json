@@ -1,0 +1,455 @@
+{
+  "method": "TOFD B-scan, depth correction and SAFT",
+  "input": "E:\\Robot_Challenge_cup\\焊缝数据集\\Ultrasonic_Weld_Imaging\\derived\\tofd_synthetic_dataset_v1\\test\\case_0110\\tofd_synthetic_scan.mat",
+  "input_is_measured": false,
+  "rf_shape": [
+    351,
+    2001
+  ],
+  "sample_rate_hz": 100000000.00000095,
+  "velocity_m_s": 5852.889855342531,
+  "probe_center_spacing_m": 0.03324405331870481,
+  "plate_thickness_m": 0.035285463771238514,
+  "coherence_factor": false,
+  "saft_peak": {
+    "x_mm": -14.0,
+    "z_mm": 7.0,
+    "db": 0.0
+  },
+  "tip_candidates": [
+    {
+      "x_mm": -14.0,
+      "depth_mm": 7.0,
+      "db": 0.0,
+      "coherence": null,
+      "phase_rad": 2.6864593029022217
+    },
+    {
+      "x_mm": -4.75,
+      "depth_mm": 14.25,
+      "db": -0.024144122377038002,
+      "coherence": null,
+      "phase_rad": -0.44048961997032166
+    },
+    {
+      "x_mm": 14.750000000000002,
+      "depth_mm": 9.25,
+      "db": -2.113125801086426,
+      "coherence": null,
+      "phase_rad": 1.1770744323730469
+    },
+    {
+      "x_mm": 13.000000000000002,
+      "depth_mm": 10.0,
+      "db": -2.6307132244110107,
+      "coherence": null,
+      "phase_rad": -2.0978565216064453
+    },
+    {
+      "x_mm": -0.5,
+      "depth_mm": 6.0,
+      "db": -4.736831188201904,
+      "coherence": null,
+      "phase_rad": 1.984378695487976
+    },
+    {
+      "x_mm": 10.25,
+      "depth_mm": 3.0,
+      "db": -5.1995415687561035,
+      "coherence": null,
+      "phase_rad": -2.3891026973724365
+    },
+    {
+      "x_mm": 11.25,
+      "depth_mm": 9.75,
+      "db": -5.418859958648682,
+      "coherence": null,
+      "phase_rad": 2.899758815765381
+    },
+    {
+      "x_mm": -9.5,
+      "depth_mm": 5.25,
+      "db": -5.627603054046631,
+      "coherence": null,
+      "phase_rad": -0.3692587912082672
+    },
+    {
+      "x_mm": 3.2500000000000004,
+      "depth_mm": 12.750000000000002,
+      "db": -5.799292087554932,
+      "coherence": null,
+      "phase_rad": 3.0058844089508057
+    },
+    {
+      "x_mm": 8.25,
+      "depth_mm": 7.25,
+      "db": -5.8820600509643555,
+      "coherence": null,
+      "phase_rad": -3.045790672302246
+    },
+    {
+      "x_mm": -0.5,
+      "depth_mm": 10.25,
+      "db": -6.094571590423584,
+      "coherence": null,
+      "phase_rad": 2.795692205429077
+    },
+    {
+      "x_mm": 8.75,
+      "depth_mm": 10.0,
+      "db": -6.223507881164551,
+      "coherence": null,
+      "phase_rad": -2.4007582664489746
+    },
+    {
+      "x_mm": 4.75,
+      "depth_mm": 8.75,
+      "db": -6.4967756271362305,
+      "coherence": null,
+      "phase_rad": 1.2243493795394897
+    },
+    {
+      "x_mm": -3.0,
+      "depth_mm": 6.25,
+      "db": -6.791706562042236,
+      "coherence": null,
+      "phase_rad": 2.348604202270508
+    },
+    {
+      "x_mm": -13.75,
+      "depth_mm": 21.0,
+      "db": -6.848916053771973,
+      "coherence": null,
+      "phase_rad": 0.0793982669711113
+    },
+    {
+      "x_mm": 12.5,
+      "depth_mm": 14.25,
+      "db": -6.948237895965576,
+      "coherence": null,
+      "phase_rad": 2.2049880027770996
+    },
+    {
+      "x_mm": -3.5,
+      "depth_mm": 27.0,
+      "db": -7.198296546936035,
+      "coherence": null,
+      "phase_rad": -2.5026049613952637
+    },
+    {
+      "x_mm": 2.75,
+      "depth_mm": 10.5,
+      "db": -7.397152900695801,
+      "coherence": null,
+      "phase_rad": 2.8275351524353027
+    },
+    {
+      "x_mm": 4.500000000000001,
+      "depth_mm": 27.5,
+      "db": -7.465907573699951,
+      "coherence": null,
+      "phase_rad": -2.018873691558838
+    },
+    {
+      "x_mm": -16.25,
+      "depth_mm": 10.5,
+      "db": -7.477635383605957,
+      "coherence": null,
+      "phase_rad": 2.3482232093811035
+    },
+    {
+      "x_mm": -6.75,
+      "depth_mm": 6.25,
+      "db": -7.5317511558532715,
+      "coherence": null,
+      "phase_rad": 2.175966739654541
+    },
+    {
+      "x_mm": -11.25,
+      "depth_mm": 29.750000000000004,
+      "db": -7.678393840789795,
+      "coherence": null,
+      "phase_rad": 1.675864815711975
+    },
+    {
+      "x_mm": 10.25,
+      "depth_mm": 29.25,
+      "db": -7.688908576965332,
+      "coherence": null,
+      "phase_rad": -1.1272594928741455
+    },
+    {
+      "x_mm": -6.75,
+      "depth_mm": 9.000000000000002,
+      "db": -7.809870719909668,
+      "coherence": null,
+      "phase_rad": 2.681832790374756
+    },
+    {
+      "x_mm": -16.75,
+      "depth_mm": 14.0,
+      "db": -7.868806838989258,
+      "coherence": null,
+      "phase_rad": -0.859931468963623
+    },
+    {
+      "x_mm": 5.0,
+      "depth_mm": 31.5,
+      "db": -7.872251033782959,
+      "coherence": null,
+      "phase_rad": 1.8567159175872803
+    },
+    {
+      "x_mm": 8.75,
+      "depth_mm": 27.0,
+      "db": -7.890620231628418,
+      "coherence": null,
+      "phase_rad": -1.3786661624908447
+    },
+    {
+      "x_mm": 0.25,
+      "depth_mm": 8.75,
+      "db": -7.900827407836914,
+      "coherence": null,
+      "phase_rad": 1.119877815246582
+    },
+    {
+      "x_mm": -8.75,
+      "depth_mm": 15.25,
+      "db": -8.007038116455078,
+      "coherence": null,
+      "phase_rad": -1.2667274475097656
+    },
+    {
+      "x_mm": -12.25,
+      "depth_mm": 10.25,
+      "db": -8.015198707580566,
+      "coherence": null,
+      "phase_rad": 2.552976369857788
+    },
+    {
+      "x_mm": 17.0,
+      "depth_mm": 29.0,
+      "db": -8.087064743041992,
+      "coherence": null,
+      "phase_rad": -0.9469569325447083
+    },
+    {
+      "x_mm": 9.75,
+      "depth_mm": 17.5,
+      "db": -8.228109359741211,
+      "coherence": null,
+      "phase_rad": -1.9485442638397217
+    },
+    {
+      "x_mm": 0.75,
+      "depth_mm": 16.25,
+      "db": -8.238324165344238,
+      "coherence": null,
+      "phase_rad": 2.90146541595459
+    },
+    {
+      "x_mm": -15.5,
+      "depth_mm": 31.0,
+      "db": -8.336254119873047,
+      "coherence": null,
+      "phase_rad": 1.5844461917877197
+    },
+    {
+      "x_mm": -8.0,
+      "depth_mm": 5.5,
+      "db": -8.347713470458984,
+      "coherence": null,
+      "phase_rad": -0.11837541311979294
+    },
+    {
+      "x_mm": 4.500000000000001,
+      "depth_mm": 17.5,
+      "db": -8.358536720275879,
+      "coherence": null,
+      "phase_rad": -2.318439245223999
+    },
+    {
+      "x_mm": -0.75,
+      "depth_mm": 25.25,
+      "db": -8.416158676147461,
+      "coherence": null,
+      "phase_rad": 2.974891424179077
+    },
+    {
+      "x_mm": -6.500000000000001,
+      "depth_mm": 11.0,
+      "db": -8.515542984008789,
+      "coherence": null,
+      "phase_rad": 1.0174036026000977
+    },
+    {
+      "x_mm": 4.0,
+      "depth_mm": 10.5,
+      "db": -8.594582557678223,
+      "coherence": null,
+      "phase_rad": 1.7352252006530762
+    },
+    {
+      "x_mm": 6.75,
+      "depth_mm": 21.25,
+      "db": -8.61801528930664,
+      "coherence": null,
+      "phase_rad": -0.17206445336341858
+    },
+    {
+      "x_mm": -4.25,
+      "depth_mm": 33.0,
+      "db": -8.690327644348145,
+      "coherence": null,
+      "phase_rad": 2.881197452545166
+    },
+    {
+      "x_mm": 4.75,
+      "depth_mm": 12.5,
+      "db": -8.745185852050781,
+      "coherence": null,
+      "phase_rad": 0.16417688131332397
+    },
+    {
+      "x_mm": 15.75,
+      "depth_mm": 26.000000000000004,
+      "db": -8.7929105758667,
+      "coherence": null,
+      "phase_rad": 1.9781255722045898
+    },
+    {
+      "x_mm": -6.25,
+      "depth_mm": 23.75,
+      "db": -8.806689262390137,
+      "coherence": null,
+      "phase_rad": 2.138385057449341
+    },
+    {
+      "x_mm": 15.25,
+      "depth_mm": 16.5,
+      "db": -8.82317066192627,
+      "coherence": null,
+      "phase_rad": 1.6666080951690674
+    },
+    {
+      "x_mm": 6.0,
+      "depth_mm": 12.750000000000002,
+      "db": -8.89635944366455,
+      "coherence": null,
+      "phase_rad": 1.4237838983535767
+    },
+    {
+      "x_mm": 5.0,
+      "depth_mm": 4.0,
+      "db": -9.072076797485352,
+      "coherence": null,
+      "phase_rad": -1.5270164012908936
+    },
+    {
+      "x_mm": 12.25,
+      "depth_mm": 31.5,
+      "db": -9.179084777832031,
+      "coherence": null,
+      "phase_rad": -0.5125112533569336
+    },
+    {
+      "x_mm": -8.0,
+      "depth_mm": 29.500000000000004,
+      "db": -9.244478225708008,
+      "coherence": null,
+      "phase_rad": -3.0939762592315674
+    },
+    {
+      "x_mm": 12.5,
+      "depth_mm": 30.25,
+      "db": -9.278308868408203,
+      "coherence": null,
+      "phase_rad": -0.9793819785118103
+    },
+    {
+      "x_mm": 15.25,
+      "depth_mm": 23.0,
+      "db": -9.27858829498291,
+      "coherence": null,
+      "phase_rad": 3.0058388710021973
+    },
+    {
+      "x_mm": 3.2500000000000004,
+      "depth_mm": 5.5,
+      "db": -9.28471565246582,
+      "coherence": null,
+      "phase_rad": 0.41927552223205566
+    },
+    {
+      "x_mm": 17.0,
+      "depth_mm": 15.75,
+      "db": -9.288226127624512,
+      "coherence": null,
+      "phase_rad": 2.028228998184204
+    },
+    {
+      "x_mm": 6.0,
+      "depth_mm": 17.0,
+      "db": -9.293686866760254,
+      "coherence": null,
+      "phase_rad": 0.08011701703071594
+    },
+    {
+      "x_mm": 14.0,
+      "depth_mm": 32.25,
+      "db": -9.323317527770996,
+      "coherence": null,
+      "phase_rad": -1.0026285648345947
+    },
+    {
+      "x_mm": -13.75,
+      "depth_mm": 25.750000000000004,
+      "db": -9.402358055114746,
+      "coherence": null,
+      "phase_rad": 1.3786873817443848
+    },
+    {
+      "x_mm": 0.25,
+      "depth_mm": 32.75,
+      "db": -9.405366897583008,
+      "coherence": null,
+      "phase_rad": -2.3222110271453857
+    },
+    {
+      "x_mm": -5.75,
+      "depth_mm": 20.0,
+      "db": -9.406548500061035,
+      "coherence": null,
+      "phase_rad": -2.7682485580444336
+    },
+    {
+      "x_mm": -3.0,
+      "depth_mm": 18.000000000000004,
+      "db": -9.425079345703125,
+      "coherence": null,
+      "phase_rad": 2.676347255706787
+    },
+    {
+      "x_mm": 3.0,
+      "depth_mm": 24.0,
+      "db": -9.429388046264648,
+      "coherence": null,
+      "phase_rad": -1.2917741537094116
+    }
+  ],
+  "sized_defects": [],
+  "processing_seconds": 2.291759700048715,
+  "output_files": [
+    "tofd_images.npz",
+    "bscan.png",
+    "dscan_depth_corrected.png",
+    "saft.png",
+    "report.json"
+  ],
+  "limitations": [
+    "TOFD depth conversion assumes symmetric probes, known PCS and a homogeneous specimen.",
+    "Wedge delays and lateral-wave time zero must be calibrated for measured data.",
+    "Reported peaks are image maxima, not automatic defect acceptance decisions."
+  ]
+}

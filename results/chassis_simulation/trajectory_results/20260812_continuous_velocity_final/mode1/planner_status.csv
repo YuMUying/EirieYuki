@@ -1,0 +1,7 @@
+wall_time,status
+0.0,waiting_for_mode_1_goal
+0.0,mode_1_goal
+0.0002058990066871047,planning_failed: waiting for target_pose
+0.00039942600415088236,planning_failed: waiting for target_pose
+0.002691039990168065,executing_mode_1: 68 trajectory samples; goal updated
+142.3346827949863,completed

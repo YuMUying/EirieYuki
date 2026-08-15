@@ -1,0 +1,7 @@
+std_msgs/Header header
+string task_id
+bool inspection_requested
+wcr_planning_msgs/DeviceCommand vision_camera_command
+wcr_planning_msgs/DeviceState vision_camera_state
+wcr_planning_msgs/DeviceCommand ultrasound_command
+wcr_planning_msgs/DeviceState ultrasound_state

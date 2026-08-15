@@ -1,0 +1,21 @@
+{
+  "dataset_dir": "E:\\Robot_Challenge_cup\\焊缝数据集\\Ultrasonic_Weld_Imaging\\derived\\tofd_synthetic_dataset_v1",
+  "split": "validation",
+  "case_count": 19,
+  "truth_defect_count": 18,
+  "upper_tip_recall": 1.0,
+  "lower_tip_recall": 0.7777777777777778,
+  "sizing_recall": 0.6111111111111112,
+  "normal_case_false_positive_rate": 0.0,
+  "upper_tip_mean_error_mm": 0.1413133494809373,
+  "lower_tip_mean_error_mm": 0.2045638022625021,
+  "height_mean_absolute_error_mm": 0.06570432825270588,
+  "pixel_mm": 0.25,
+  "candidate_threshold_db": -36.0,
+  "processing_seconds": 5.54555869998876,
+  "limitations": [
+    "Metrics apply to the semi-analytical synthetic archive, not field probability of detection.",
+    "Weak lower-tip signals may be below weld-clutter peaks, so sizing recall is reported separately.",
+    "A sized indication is an algorithm candidate, not an acceptance-code decision."
+  ]
+}

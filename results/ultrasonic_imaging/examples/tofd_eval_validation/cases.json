@@ -1,0 +1,347 @@
+[
+  {
+    "case_id": "case_0091",
+    "truth_count": 1,
+    "candidate_count": 60,
+    "sized_defect_count": 1,
+    "upper_tip_hits": 1,
+    "lower_tip_hits": 1,
+    "sized_defect_hits": 1,
+    "upper_tip_errors_mm": [
+      0.1207993263351634
+    ],
+    "lower_tip_errors_mm": [
+      0.10797900573822121
+    ],
+    "height_errors_mm": [
+      0.1312491434414531
+    ],
+    "false_sized_defects": 0,
+    "processing_seconds": 0.33964610006660223
+  },
+  {
+    "case_id": "case_0092",
+    "truth_count": 1,
+    "candidate_count": 60,
+    "sized_defect_count": 1,
+    "upper_tip_hits": 1,
+    "lower_tip_hits": 1,
+    "sized_defect_hits": 0,
+    "upper_tip_errors_mm": [
+      0.1789663177184866
+    ],
+    "lower_tip_errors_mm": [
+      0.1722697956758819
+    ],
+    "height_errors_mm": [],
+    "false_sized_defects": 1,
+    "processing_seconds": 0.35640950000379235
+  },
+  {
+    "case_id": "case_0093",
+    "truth_count": 1,
+    "candidate_count": 51,
+    "sized_defect_count": 2,
+    "upper_tip_hits": 1,
+    "lower_tip_hits": 1,
+    "sized_defect_hits": 1,
+    "upper_tip_errors_mm": [
+      0.050607795165663175
+    ],
+    "lower_tip_errors_mm": [
+      0.0803662444991628
+    ],
+    "height_errors_mm": [
+      0.03083519341326446
+    ],
+    "false_sized_defects": 1,
+    "processing_seconds": 0.34053000004496425
+  },
+  {
+    "case_id": "case_0094",
+    "truth_count": 2,
+    "candidate_count": 49,
+    "sized_defect_count": 2,
+    "upper_tip_hits": 2,
+    "lower_tip_hits": 2,
+    "sized_defect_hits": 2,
+    "upper_tip_errors_mm": [
+      0.2682942620911979,
+      0.04282726249495748
+    ],
+    "lower_tip_errors_mm": [
+      0.22504683669646244,
+      0.20860625853055884
+    ],
+    "height_errors_mm": [
+      0.22840514226611824,
+      0.013522792607812903
+    ],
+    "false_sized_defects": 0,
+    "processing_seconds": 0.2939640999538824
+  },
+  {
+    "case_id": "case_0095",
+    "truth_count": 1,
+    "candidate_count": 49,
+    "sized_defect_count": 1,
+    "upper_tip_hits": 1,
+    "lower_tip_hits": 1,
+    "sized_defect_hits": 1,
+    "upper_tip_errors_mm": [
+      0.09382950264361352
+    ],
+    "lower_tip_errors_mm": [
+      0.10016421756137986
+    ],
+    "height_errors_mm": [
+      0.021671919627964942
+    ],
+    "false_sized_defects": 0,
+    "processing_seconds": 0.22243309998884797
+  },
+  {
+    "case_id": "case_0096",
+    "truth_count": 0,
+    "candidate_count": 60,
+    "sized_defect_count": 0,
+    "upper_tip_hits": 0,
+    "lower_tip_hits": 0,
+    "sized_defect_hits": 0,
+    "upper_tip_errors_mm": [],
+    "lower_tip_errors_mm": [],
+    "height_errors_mm": [],
+    "false_sized_defects": 0,
+    "processing_seconds": 0.34684680006466806
+  },
+  {
+    "case_id": "case_0097",
+    "truth_count": 1,
+    "candidate_count": 60,
+    "sized_defect_count": 1,
+    "upper_tip_hits": 1,
+    "lower_tip_hits": 1,
+    "sized_defect_hits": 1,
+    "upper_tip_errors_mm": [
+      0.10479473870283883
+    ],
+    "lower_tip_errors_mm": [
+      0.2947624963854583
+    ],
+    "height_errors_mm": [
+      0.005934014173418489
+    ],
+    "false_sized_defects": 0,
+    "processing_seconds": 0.3465507000219077
+  },
+  {
+    "case_id": "case_0098",
+    "truth_count": 1,
+    "candidate_count": 60,
+    "sized_defect_count": 1,
+    "upper_tip_hits": 1,
+    "lower_tip_hits": 1,
+    "sized_defect_hits": 0,
+    "upper_tip_errors_mm": [
+      0.16338411600615704
+    ],
+    "lower_tip_errors_mm": [
+      0.3100044560483611
+    ],
+    "height_errors_mm": [],
+    "false_sized_defects": 1,
+    "processing_seconds": 0.3432042000349611
+  },
+  {
+    "case_id": "case_0099",
+    "truth_count": 0,
+    "candidate_count": 49,
+    "sized_defect_count": 0,
+    "upper_tip_hits": 0,
+    "lower_tip_hits": 0,
+    "sized_defect_hits": 0,
+    "upper_tip_errors_mm": [],
+    "lower_tip_errors_mm": [],
+    "height_errors_mm": [],
+    "false_sized_defects": 0,
+    "processing_seconds": 0.21884569991379976
+  },
+  {
+    "case_id": "case_0100",
+    "truth_count": 1,
+    "candidate_count": 60,
+    "sized_defect_count": 1,
+    "upper_tip_hits": 1,
+    "lower_tip_hits": 1,
+    "sized_defect_hits": 1,
+    "upper_tip_errors_mm": [
+      0.11260236387909946
+    ],
+    "lower_tip_errors_mm": [
+      0.08419803141519029
+    ],
+    "height_errors_mm": [
+      0.03328581657779418
+    ],
+    "false_sized_defects": 0,
+    "processing_seconds": 0.2691930999280885
+  },
+  {
+    "case_id": "case_0101",
+    "truth_count": 1,
+    "candidate_count": 51,
+    "sized_defect_count": 1,
+    "upper_tip_hits": 1,
+    "lower_tip_hits": 1,
+    "sized_defect_hits": 1,
+    "upper_tip_errors_mm": [
+      0.1528385042480924
+    ],
+    "lower_tip_errors_mm": [
+      0.1446525788756844
+    ],
+    "height_errors_mm": [
+      0.11369067145529897
+    ],
+    "false_sized_defects": 0,
+    "processing_seconds": 0.21014689991716295
+  },
+  {
+    "case_id": "case_0102",
+    "truth_count": 1,
+    "candidate_count": 60,
+    "sized_defect_count": 0,
+    "upper_tip_hits": 1,
+    "lower_tip_hits": 0,
+    "sized_defect_hits": 0,
+    "upper_tip_errors_mm": [
+      0.18921706954243295
+    ],
+    "lower_tip_errors_mm": [],
+    "height_errors_mm": [],
+    "false_sized_defects": 0,
+    "processing_seconds": 0.32205750001594424
+  },
+  {
+    "case_id": "case_0103",
+    "truth_count": 1,
+    "candidate_count": 60,
+    "sized_defect_count": 2,
+    "upper_tip_hits": 1,
+    "lower_tip_hits": 0,
+    "sized_defect_hits": 0,
+    "upper_tip_errors_mm": [
+      0.26216537566038794
+    ],
+    "lower_tip_errors_mm": [],
+    "height_errors_mm": [],
+    "false_sized_defects": 2,
+    "processing_seconds": 0.3316724000032991
+  },
+  {
+    "case_id": "case_0104",
+    "truth_count": 0,
+    "candidate_count": 60,
+    "sized_defect_count": 0,
+    "upper_tip_hits": 0,
+    "lower_tip_hits": 0,
+    "sized_defect_hits": 0,
+    "upper_tip_errors_mm": [],
+    "lower_tip_errors_mm": [],
+    "height_errors_mm": [],
+    "false_sized_defects": 0,
+    "processing_seconds": 0.2610407000174746
+  },
+  {
+    "case_id": "case_0105",
+    "truth_count": 2,
+    "candidate_count": 49,
+    "sized_defect_count": 2,
+    "upper_tip_hits": 2,
+    "lower_tip_hits": 2,
+    "sized_defect_hits": 2,
+    "upper_tip_errors_mm": [
+      0.08727109092864818,
+      0.07658631642307015
+    ],
+    "lower_tip_errors_mm": [
+      0.08933409482472929,
+      0.0815579766587228
+    ],
+    "height_errors_mm": [
+      0.03575253061239604,
+      0.005668723142658941
+    ],
+    "false_sized_defects": 0,
+    "processing_seconds": 0.2982017999747768
+  },
+  {
+    "case_id": "case_0106",
+    "truth_count": 1,
+    "candidate_count": 60,
+    "sized_defect_count": 1,
+    "upper_tip_hits": 1,
+    "lower_tip_hits": 0,
+    "sized_defect_hits": 0,
+    "upper_tip_errors_mm": [
+      0.1155489974931132
+    ],
+    "lower_tip_errors_mm": [],
+    "height_errors_mm": [],
+    "false_sized_defects": 1,
+    "processing_seconds": 0.3224163999548182
+  },
+  {
+    "case_id": "case_0107",
+    "truth_count": 1,
+    "candidate_count": 38,
+    "sized_defect_count": 2,
+    "upper_tip_hits": 1,
+    "lower_tip_hits": 1,
+    "sized_defect_hits": 1,
+    "upper_tip_errors_mm": [
+      0.23120454157953055
+    ],
+    "lower_tip_errors_mm": [
+      0.06683658244649202
+    ],
+    "height_errors_mm": [
+      0.10273166346158429
+    ],
+    "false_sized_defects": 1,
+    "processing_seconds": 0.1973271999740973
+  },
+  {
+    "case_id": "case_0108",
+    "truth_count": 0,
+    "candidate_count": 60,
+    "sized_defect_count": 0,
+    "upper_tip_hits": 0,
+    "lower_tip_hits": 0,
+    "sized_defect_hits": 0,
+    "upper_tip_errors_mm": [],
+    "lower_tip_errors_mm": [],
+    "height_errors_mm": [],
+    "false_sized_defects": 0,
+    "processing_seconds": 0.2244217999977991
+  },
+  {
+    "case_id": "case_0109",
+    "truth_count": 2,
+    "candidate_count": 60,
+    "sized_defect_count": 2,
+    "upper_tip_hits": 2,
+    "lower_tip_hits": 1,
+    "sized_defect_hits": 0,
+    "upper_tip_errors_mm": [
+      0.13941510551570163,
+      0.15328760422871707
+    ],
+    "lower_tip_errors_mm": [
+      0.8981146563187243
+    ],
+    "height_errors_mm": [],
+    "false_sized_defects": 2,
+    "processing_seconds": 0.29112479998730123
+  }
+]

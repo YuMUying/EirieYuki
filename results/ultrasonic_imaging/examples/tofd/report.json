@@ -1,0 +1,32 @@
+{
+  "method": "TOFD B-scan, depth correction and SAFT",
+  "input": "E:\\Robot_Challenge_cup\\ultrasonic-imaging\\examples\\output\\tofd_synthetic.npz",
+  "input_is_measured": false,
+  "rf_shape": [
+    201,
+    4096
+  ],
+  "sample_rate_hz": 100000000.0,
+  "velocity_m_s": 5890.0,
+  "probe_center_spacing_m": 0.06,
+  "plate_thickness_m": 0.03,
+  "coherence_factor": false,
+  "saft_peak": {
+    "x_mm": 0.0,
+    "z_mm": 12.0,
+    "db": 0.0
+  },
+  "processing_seconds": 1.9458490000106394,
+  "output_files": [
+    "tofd_images.npz",
+    "bscan.png",
+    "dscan_depth_corrected.png",
+    "saft.png",
+    "report.json"
+  ],
+  "limitations": [
+    "TOFD depth conversion assumes symmetric probes, known PCS and a homogeneous specimen.",
+    "Wedge delays and lateral-wave time zero must be calibrated for measured data.",
+    "Reported peaks are image maxima, not automatic defect acceptance decisions."
+  ]
+}

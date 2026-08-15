@@ -1,0 +1,3 @@
+---
+wcr_planning_msgs/TaskState task_state
+wcr_planning_msgs/InspectionState inspection_state

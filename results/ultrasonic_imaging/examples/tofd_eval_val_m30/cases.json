@@ -1,0 +1,345 @@
+[
+  {
+    "case_id": "case_0091",
+    "truth_count": 1,
+    "candidate_count": 60,
+    "sized_defect_count": 2,
+    "upper_tip_hits": 1,
+    "lower_tip_hits": 1,
+    "sized_defect_hits": 1,
+    "upper_tip_errors_mm": [
+      0.1207993263351634
+    ],
+    "lower_tip_errors_mm": [
+      0.10797900573822121
+    ],
+    "height_errors_mm": [
+      0.1312491434414531
+    ],
+    "false_sized_defects": 1,
+    "processing_seconds": 0.3174503000918776
+  },
+  {
+    "case_id": "case_0092",
+    "truth_count": 1,
+    "candidate_count": 60,
+    "sized_defect_count": 2,
+    "upper_tip_hits": 1,
+    "lower_tip_hits": 1,
+    "sized_defect_hits": 1,
+    "upper_tip_errors_mm": [
+      0.1789663177184866
+    ],
+    "lower_tip_errors_mm": [
+      0.1722697956758819
+    ],
+    "height_errors_mm": [
+      0.19603272345917327
+    ],
+    "false_sized_defects": 1,
+    "processing_seconds": 0.37256500008516014
+  },
+  {
+    "case_id": "case_0093",
+    "truth_count": 1,
+    "candidate_count": 18,
+    "sized_defect_count": 2,
+    "upper_tip_hits": 1,
+    "lower_tip_hits": 1,
+    "sized_defect_hits": 1,
+    "upper_tip_errors_mm": [
+      0.050607795165663175
+    ],
+    "lower_tip_errors_mm": [
+      0.0803662444991628
+    ],
+    "height_errors_mm": [
+      0.03083519341326446
+    ],
+    "false_sized_defects": 1,
+    "processing_seconds": 0.37087669991888106
+  },
+  {
+    "case_id": "case_0094",
+    "truth_count": 2,
+    "candidate_count": 11,
+    "sized_defect_count": 2,
+    "upper_tip_hits": 2,
+    "lower_tip_hits": 2,
+    "sized_defect_hits": 2,
+    "upper_tip_errors_mm": [
+      0.2682942620911979,
+      0.04282726249495748
+    ],
+    "lower_tip_errors_mm": [
+      0.22504683669646244,
+      0.20860625853055884
+    ],
+    "height_errors_mm": [
+      0.22840514226611824,
+      0.013522792607812903
+    ],
+    "false_sized_defects": 0,
+    "processing_seconds": 0.3621559999883175
+  },
+  {
+    "case_id": "case_0095",
+    "truth_count": 1,
+    "candidate_count": 46,
+    "sized_defect_count": 2,
+    "upper_tip_hits": 1,
+    "lower_tip_hits": 1,
+    "sized_defect_hits": 1,
+    "upper_tip_errors_mm": [
+      0.09382950264361352
+    ],
+    "lower_tip_errors_mm": [
+      0.10016421756137986
+    ],
+    "height_errors_mm": [
+      0.021671919627964942
+    ],
+    "false_sized_defects": 1,
+    "processing_seconds": 0.2577299999538809
+  },
+  {
+    "case_id": "case_0096",
+    "truth_count": 0,
+    "candidate_count": 60,
+    "sized_defect_count": 2,
+    "upper_tip_hits": 0,
+    "lower_tip_hits": 0,
+    "sized_defect_hits": 0,
+    "upper_tip_errors_mm": [],
+    "lower_tip_errors_mm": [],
+    "height_errors_mm": [],
+    "false_sized_defects": 2,
+    "processing_seconds": 0.45793579996097833
+  },
+  {
+    "case_id": "case_0097",
+    "truth_count": 1,
+    "candidate_count": 16,
+    "sized_defect_count": 2,
+    "upper_tip_hits": 1,
+    "lower_tip_hits": 0,
+    "sized_defect_hits": 0,
+    "upper_tip_errors_mm": [
+      0.10479473870283883
+    ],
+    "lower_tip_errors_mm": [],
+    "height_errors_mm": [],
+    "false_sized_defects": 2,
+    "processing_seconds": 0.4703184000682086
+  },
+  {
+    "case_id": "case_0098",
+    "truth_count": 1,
+    "candidate_count": 35,
+    "sized_defect_count": 2,
+    "upper_tip_hits": 1,
+    "lower_tip_hits": 1,
+    "sized_defect_hits": 1,
+    "upper_tip_errors_mm": [
+      0.16338411600615704
+    ],
+    "lower_tip_errors_mm": [
+      0.3100044560483611
+    ],
+    "height_errors_mm": [
+      0.2885568945956915
+    ],
+    "false_sized_defects": 1,
+    "processing_seconds": 0.45978599996306
+  },
+  {
+    "case_id": "case_0099",
+    "truth_count": 0,
+    "candidate_count": 49,
+    "sized_defect_count": 2,
+    "upper_tip_hits": 0,
+    "lower_tip_hits": 0,
+    "sized_defect_hits": 0,
+    "upper_tip_errors_mm": [],
+    "lower_tip_errors_mm": [],
+    "height_errors_mm": [],
+    "false_sized_defects": 2,
+    "processing_seconds": 0.27090500004123896
+  },
+  {
+    "case_id": "case_0100",
+    "truth_count": 1,
+    "candidate_count": 33,
+    "sized_defect_count": 2,
+    "upper_tip_hits": 1,
+    "lower_tip_hits": 1,
+    "sized_defect_hits": 1,
+    "upper_tip_errors_mm": [
+      0.11260236387909946
+    ],
+    "lower_tip_errors_mm": [
+      0.08419803141519029
+    ],
+    "height_errors_mm": [
+      0.03328581657779418
+    ],
+    "false_sized_defects": 1,
+    "processing_seconds": 0.35701629996765405
+  },
+  {
+    "case_id": "case_0101",
+    "truth_count": 1,
+    "candidate_count": 39,
+    "sized_defect_count": 2,
+    "upper_tip_hits": 1,
+    "lower_tip_hits": 1,
+    "sized_defect_hits": 1,
+    "upper_tip_errors_mm": [
+      0.1528385042480924
+    ],
+    "lower_tip_errors_mm": [
+      0.1446525788756844
+    ],
+    "height_errors_mm": [
+      0.11369067145529897
+    ],
+    "false_sized_defects": 1,
+    "processing_seconds": 0.2601970999967307
+  },
+  {
+    "case_id": "case_0102",
+    "truth_count": 1,
+    "candidate_count": 60,
+    "sized_defect_count": 2,
+    "upper_tip_hits": 1,
+    "lower_tip_hits": 0,
+    "sized_defect_hits": 0,
+    "upper_tip_errors_mm": [
+      0.18921706954243295
+    ],
+    "lower_tip_errors_mm": [],
+    "height_errors_mm": [],
+    "false_sized_defects": 2,
+    "processing_seconds": 0.4752576999599114
+  },
+  {
+    "case_id": "case_0103",
+    "truth_count": 1,
+    "candidate_count": 60,
+    "sized_defect_count": 2,
+    "upper_tip_hits": 1,
+    "lower_tip_hits": 0,
+    "sized_defect_hits": 0,
+    "upper_tip_errors_mm": [
+      0.26216537566038794
+    ],
+    "lower_tip_errors_mm": [],
+    "height_errors_mm": [],
+    "false_sized_defects": 2,
+    "processing_seconds": 0.44860280002467334
+  },
+  {
+    "case_id": "case_0104",
+    "truth_count": 0,
+    "candidate_count": 60,
+    "sized_defect_count": 2,
+    "upper_tip_hits": 0,
+    "lower_tip_hits": 0,
+    "sized_defect_hits": 0,
+    "upper_tip_errors_mm": [],
+    "lower_tip_errors_mm": [],
+    "height_errors_mm": [],
+    "false_sized_defects": 2,
+    "processing_seconds": 0.36565629998221993
+  },
+  {
+    "case_id": "case_0105",
+    "truth_count": 2,
+    "candidate_count": 13,
+    "sized_defect_count": 2,
+    "upper_tip_hits": 2,
+    "lower_tip_hits": 2,
+    "sized_defect_hits": 2,
+    "upper_tip_errors_mm": [
+      0.08727109092864818,
+      0.07658631642307015
+    ],
+    "lower_tip_errors_mm": [
+      0.08933409482472929,
+      0.0815579766587228
+    ],
+    "height_errors_mm": [
+      0.03575253061239604,
+      0.005668723142658941
+    ],
+    "false_sized_defects": 0,
+    "processing_seconds": 0.3383274000370875
+  },
+  {
+    "case_id": "case_0106",
+    "truth_count": 1,
+    "candidate_count": 60,
+    "sized_defect_count": 2,
+    "upper_tip_hits": 1,
+    "lower_tip_hits": 0,
+    "sized_defect_hits": 0,
+    "upper_tip_errors_mm": [
+      0.1155489974931132
+    ],
+    "lower_tip_errors_mm": [],
+    "height_errors_mm": [],
+    "false_sized_defects": 2,
+    "processing_seconds": 0.3968517000321299
+  },
+  {
+    "case_id": "case_0107",
+    "truth_count": 1,
+    "candidate_count": 38,
+    "sized_defect_count": 2,
+    "upper_tip_hits": 1,
+    "lower_tip_hits": 1,
+    "sized_defect_hits": 1,
+    "upper_tip_errors_mm": [
+      0.23120454157953055
+    ],
+    "lower_tip_errors_mm": [
+      0.06683658244649202
+    ],
+    "height_errors_mm": [
+      0.10273166346158429
+    ],
+    "false_sized_defects": 1,
+    "processing_seconds": 0.2816587000852451
+  },
+  {
+    "case_id": "case_0108",
+    "truth_count": 0,
+    "candidate_count": 60,
+    "sized_defect_count": 2,
+    "upper_tip_hits": 0,
+    "lower_tip_hits": 0,
+    "sized_defect_hits": 0,
+    "upper_tip_errors_mm": [],
+    "lower_tip_errors_mm": [],
+    "height_errors_mm": [],
+    "false_sized_defects": 2,
+    "processing_seconds": 0.30271519999951124
+  },
+  {
+    "case_id": "case_0109",
+    "truth_count": 2,
+    "candidate_count": 52,
+    "sized_defect_count": 2,
+    "upper_tip_hits": 2,
+    "lower_tip_hits": 0,
+    "sized_defect_hits": 0,
+    "upper_tip_errors_mm": [
+      0.13941510551570163,
+      0.15328760422871707
+    ],
+    "lower_tip_errors_mm": [],
+    "height_errors_mm": [],
+    "false_sized_defects": 2,
+    "processing_seconds": 0.4207372999517247
+  }
+]

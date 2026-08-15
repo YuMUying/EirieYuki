@@ -1,0 +1,8 @@
+wall_time,status
+0.0,waiting_for_mode_1_goal
+0.0,mode_2_curve
+0.000723876990377903,planning_failed: waiting for reference_curve
+0.0029411709983833134,planning_failed: waiting for reference_curve
+0.008674212003825232,executing_mode_2: 79 trajectory samples; reference curve updated
+57.466032163007185,executing_mode_2: 52 trajectory samples; reference curve updated
+158.7688546690042,completed

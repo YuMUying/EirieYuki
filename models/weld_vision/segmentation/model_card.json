@@ -1,0 +1,46 @@
+{
+  "model_name": "weld_seam_segmentation_mvp",
+  "version": "0.1.0",
+  "architecture": "TinyUNet",
+  "parameters": 390369,
+  "input": {
+    "layout": "NCHW",
+    "color": "RGB",
+    "width": 192,
+    "height": 192,
+    "range": [0.0, 1.0]
+  },
+  "output": {
+    "name": "logits",
+    "classes": ["background", "weld"],
+    "recommended_threshold": 0.5
+  },
+  "training": {
+    "dataset": "WES-Combined-Dataset",
+    "original_train_samples": 1046,
+    "validation_samples": 225,
+    "selected_epoch": 12,
+    "device": "CPU"
+  },
+  "test": {
+    "samples": 223,
+    "dice": 0.9866788701100969,
+    "iou": 0.9737079796384974,
+    "pixel_accuracy": 0.9945752610005605,
+    "valid_centerline_pairs": 223,
+    "mean_symmetric_centerline_distance_px": 3.3208391666412354,
+    "median_symmetric_centerline_distance_px": 1.722962737083435,
+    "p95_symmetric_centerline_distance_px": 10.050246047973628,
+    "centerline_coverage_within_5px": 0.9210485925653068
+  },
+  "artifacts": {
+    "weld_segmentation.pt_sha256": "40AB7195F96256BE65459C70A7219F064D7006922C8722CE7EC5D3A97CBD82CF",
+    "weld_segmentation.onnx_sha256": "8A76CD02B8B3F2D71DA5743F572C8A8F20B9AD8B26D375224C624911C605E797",
+    "onnx_opset": 18
+  },
+  "limitations": [
+    "Outputs 2D pixel and normalized image coordinates only.",
+    "Performance is measured on the supplied dataset, not a future robot camera domain.",
+    "Live camera capture, temporal tracking, calibration, 3D reconstruction, ROS 2 and robot control are outside this MVP."
+  ]
+}

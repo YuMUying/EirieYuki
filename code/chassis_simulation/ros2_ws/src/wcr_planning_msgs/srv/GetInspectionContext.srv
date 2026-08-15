@@ -1,0 +1,7 @@
+builtin_interfaces/Time stamp
+string task_id
+uint64 sample_index
+---
+bool success
+string detail
+wcr_planning_msgs/InspectionContext context
