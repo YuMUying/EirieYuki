@@ -2,69 +2,17 @@ from __future__ import annotations
 
 import argparse
 from pathlib import Path
-from typing import Protocol
 
 import cv2
 import numpy as np
 
 from weld_seam.centerline import extract_centerline
+from weld_seam.inference import OnnxSegmenter, TorchSegmenter
 from weld_seam.io_utils import draw_overlay, save_centerline_outputs
-from weld_seam.preprocess import letterbox, restore_probability
 from project_paths import DEFAULT_ONNX_MODEL, WELD_RESULTS_DIR
 
 
 IMAGE_SUFFIXES = {".png", ".jpg", ".jpeg", ".bmp", ".tif", ".tiff"}
-
-
-class Segmenter(Protocol):
-    input_size: int
-
-    def predict(self, image_bgr: np.ndarray) -> np.ndarray: ...
-
-
-class TorchSegmenter:
-    def __init__(self, checkpoint_path: Path, device_name: str) -> None:
-        import torch
-
-        from weld_seam.checkpoint import load_checkpoint
-
-        if device_name == "auto":
-            device_name = "cuda" if torch.cuda.is_available() else "cpu"
-        self.device = torch.device(device_name)
-        self.model, checkpoint = load_checkpoint(checkpoint_path, self.device)
-        self.input_size = int(checkpoint["image_size"])
-
-    def predict(self, image_bgr: np.ndarray) -> np.ndarray:
-        import torch
-
-        prepared, transform = letterbox(image_bgr, self.input_size)
-        rgb = cv2.cvtColor(prepared, cv2.COLOR_BGR2RGB)
-        tensor = torch.from_numpy(np.ascontiguousarray(rgb.transpose(2, 0, 1)))
-        tensor = tensor.float().div_(255.0).unsqueeze(0).to(self.device)
-        with torch.inference_mode():
-            probability = torch.sigmoid(self.model(tensor))[0, 0].cpu().numpy()
-        return restore_probability(probability, transform)
-
-
-class OnnxSegmenter:
-    def __init__(self, model_path: Path) -> None:
-        import onnxruntime as ort
-
-        self.session = ort.InferenceSession(
-            str(model_path), providers=["CPUExecutionProvider"]
-        )
-        self.input_name = self.session.get_inputs()[0].name
-        shape = self.session.get_inputs()[0].shape
-        self.input_size = int(shape[-1])
-
-    def predict(self, image_bgr: np.ndarray) -> np.ndarray:
-        prepared, transform = letterbox(image_bgr, self.input_size)
-        rgb = cv2.cvtColor(prepared, cv2.COLOR_BGR2RGB)
-        tensor = np.ascontiguousarray(rgb.transpose(2, 0, 1), dtype=np.float32)
-        tensor = tensor[None] / 255.0
-        logits = self.session.run(None, {self.input_name: tensor})[0][0, 0]
-        probability = 1.0 / (1.0 + np.exp(-np.clip(logits, -30.0, 30.0)))
-        return restore_probability(probability, transform)
 
 
 def image_paths(path: Path) -> list[Path]:
@@ -109,7 +57,7 @@ def main() -> None:
     if not 0.0 < args.threshold < 1.0:
         raise ValueError("threshold must be between 0 and 1")
     if args.model.suffix.lower() == ".onnx":
-        segmenter: Segmenter = OnnxSegmenter(args.model)
+        segmenter = OnnxSegmenter(args.model)
     else:
         segmenter = TorchSegmenter(args.model, args.device)
 

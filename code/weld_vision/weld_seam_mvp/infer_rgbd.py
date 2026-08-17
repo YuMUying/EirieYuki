@@ -7,8 +7,8 @@ from pathlib import Path
 import cv2
 import numpy as np
 
-from infer import OnnxSegmenter, TorchSegmenter
 from weld_seam.centerline import extract_centerline
+from weld_seam.inference import OnnxSegmenter, TorchSegmenter
 from weld_seam.io_utils import draw_overlay, save_centerline_outputs
 from weld_seam.probe_alignment import estimate_probe_alignment, save_probe_alignment
 from weld_seam.rgbd_geometry import (

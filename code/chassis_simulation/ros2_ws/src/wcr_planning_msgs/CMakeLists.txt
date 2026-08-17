@@ -20,6 +20,7 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/TaskState.msg"
   "msg/DeviceCommand.msg"
   "msg/DeviceState.msg"
+  "msg/VisionTiming.msg"
   "msg/InspectionState.msg"
   "msg/ProbeAlignment.msg"
   "msg/WeldSeamCandidate.msg"

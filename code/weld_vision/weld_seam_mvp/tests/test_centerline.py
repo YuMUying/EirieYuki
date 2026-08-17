@@ -10,7 +10,7 @@ import numpy as np
 
 from weld_seam.centerline import extract_centerline, extract_centerlines, skeletonize
 from weld_seam.io_utils import save_centerline_outputs
-from weld_seam.preprocess import letterbox, restore_probability
+from weld_seam.preprocess import letterbox, restore_points, restore_probability
 
 
 class CenterlineTests(unittest.TestCase):
@@ -130,6 +130,17 @@ class PreprocessTests(unittest.TestCase):
         restored = restore_probability(probability, transform)
         self.assertEqual(restored.shape, (120, 320))
         self.assertTrue(np.allclose(restored, 1.0))
+
+    def test_resized_points_restore_to_original_pixels(self) -> None:
+        image = np.zeros((480, 640, 3), dtype=np.uint8)
+        _, transform = letterbox(image, 192)
+        points = np.array([[0.0, 0.0], [191.0, 143.0]], dtype=np.float32)
+        restored = restore_points(points, transform)
+        np.testing.assert_allclose(
+            restored,
+            [[1.1666667, 1.1666667], [637.8333, 477.8333]],
+            atol=1e-3,
+        )
 
 
 if __name__ == "__main__":

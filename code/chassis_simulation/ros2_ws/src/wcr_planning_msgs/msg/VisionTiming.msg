@@ -1,0 +1,11 @@
+std_msgs/Header header
+string camera_role
+float32 processing_ms
+float32 end_to_end_ms
+float32 processing_p95_ms
+float32 end_to_end_p95_ms
+float32 effective_hz
+uint64 processed_frames
+uint64 dropped_frames
+bool deadline_met
+string detail

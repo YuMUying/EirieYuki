@@ -1,0 +1,45 @@
+{
+  "scope": "synthetic in-memory compute only; camera, ROS transport and disk excluded",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "processor": "x86_64",
+  "model": "weld_segmentation.onnx",
+  "input": {
+    "model_width": 192,
+    "model_height": 192,
+    "rgbd_width": 640,
+    "rgbd_height": 480
+  },
+  "providers": [
+    "CPUExecutionProvider"
+  ],
+  "measurements": {
+    "segmenter_predict": {
+      "runs": 100,
+      "mean_ms": 14.855608728248626,
+      "p50_ms": 14.602898445446044,
+      "p95_ms": 18.175124167464674,
+      "rate_from_p50_hz": 68.47955587281734
+    },
+    "centerline": {
+      "runs": 100,
+      "mean_ms": 23.274112776853144,
+      "p50_ms": 21.309341944288462,
+      "p95_ms": 39.4887262256816,
+      "rate_from_p50_hz": 46.92777480479775
+    },
+    "rgbd_projection": {
+      "runs": 100,
+      "mean_ms": 4.096269550500438,
+      "p50_ms": 3.806445514783263,
+      "p95_ms": 5.971199553459882,
+      "rate_from_p50_hz": 262.71228528459295
+    },
+    "complete_compute_chain": {
+      "runs": 100,
+      "mean_ms": 20.06120722158812,
+      "p50_ms": 19.92694759974256,
+      "p95_ms": 23.044446558924392,
+      "rate_from_p50_hz": 50.18330052781988
+    }
+  }
+}

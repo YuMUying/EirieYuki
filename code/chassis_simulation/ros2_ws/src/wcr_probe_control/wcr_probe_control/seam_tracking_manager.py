@@ -60,6 +60,7 @@ class SeamTrackingManager(Node):
     def __init__(self) -> None:
         super().__init__("seam_tracking_manager")
         self.declare_parameter("candidate_topic", "weld_seam_candidates")
+        self.declare_parameter("top_candidate_topic", "top_weld_seam_candidates")
         self.declare_parameter("odometry_topic", "ins/odometry")
         self.declare_parameter("alignment_topic", "probe_alignment")
         self.declare_parameter("selection_topic", "weld_seam_selection")
@@ -163,6 +164,12 @@ class SeamTrackingManager(Node):
             10,
         )
         self.create_subscription(
+            WeldSeamCandidateArray,
+            str(self.get_parameter("top_candidate_topic").value),
+            self._top_candidate_callback,
+            10,
+        )
+        self.create_subscription(
             Odometry,
             str(self.get_parameter("odometry_topic").value),
             self._odometry_callback,
@@ -246,13 +253,35 @@ class SeamTrackingManager(Node):
         return None
 
     def _candidate_callback(self, message: WeldSeamCandidateArray) -> None:
+        self._observe_candidates(message, select_for_probe=True)
+
+    def _top_candidate_callback(self, message: WeldSeamCandidateArray) -> None:
+        self._observe_candidates(message, select_for_probe=False)
+
+    def _observe_candidates(
+        self, message: WeldSeamCandidateArray, select_for_probe: bool
+    ) -> None:
         if message.header.frame_id not in ("base_surface", "base_link"):
-            self._publish_invalid_selection(message, "unsupported_candidate_frame")
+            if select_for_probe:
+                self._publish_invalid_selection(message, "unsupported_candidate_frame")
+            else:
+                self.get_logger().warn(
+                    "Ignored top-camera candidates in unsupported frame",
+                    throttle_duration_sec=1.0,
+                )
             return
         timestamp = stamp_ns(message.header.stamp)
         motion = self._motion_at(timestamp)
         if motion is None:
-            self._publish_invalid_selection(message, "capture_time_odometry_unavailable")
+            if select_for_probe:
+                self._publish_invalid_selection(
+                    message, "capture_time_odometry_unavailable"
+                )
+            else:
+                self.get_logger().warn(
+                    "Ignored top-camera candidates without capture-time odometry",
+                    throttle_duration_sec=1.0,
+                )
             return
         candidates = []
         observation_ids: set[str] = set()
@@ -272,6 +301,11 @@ class SeamTrackingManager(Node):
             )
         candidates = distinct_candidates(candidates, self.config)
         associations = self.memory.observe_seams(candidates, motion, timestamp)
+        if candidates:
+            self.map_dirty = True
+        if not select_for_probe:
+            self._publish_map()
+            return
         decision = select_candidate(
             candidates,
             associations,
@@ -279,8 +313,6 @@ class SeamTrackingManager(Node):
             self.active_mapped_seam_id,
             self.config,
         )
-        if candidates:
-            self.map_dirty = True
         self._publish_decision(message, decision)
         self._publish_map()
 

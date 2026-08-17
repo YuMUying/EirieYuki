@@ -44,6 +44,8 @@ source .venv/bin/activate
 
 The virtual environment is intentionally excluded from the organized project and is rebuilt locally by `setup_wsl.sh`.
 
+For ROS 2 deployment, source ROS first and run `setup_ros_runtime.sh`. It creates `.venv-ros` with system site packages so `rclpy`, ONNX Runtime and OpenCV are visible to the same interpreter.
+
 ## 2D inference
 
 The model and output directory have project-relative defaults, so only the input is required:
@@ -160,9 +162,17 @@ Every dataset, checkpoint, model, and output option remains overrideable on the 
 
 ## Tests
 
+The repeatable benchmark uses synthetic arrays and performs no image I/O:
+
+```bash
+python benchmark_realtime.py --runs 100 --output /tmp/wcr_vision_benchmark.json
+```
+
 ```bash
 python -m unittest discover -s tests -v
 ```
+
+The persistent ROS 2 implementation and dual-camera launch are in `code/chassis_simulation/ros2_ws/src/wcr_vision`. The probe worker targets 30 Hz and the top worker 12 Hz. Both publish deadline and rolling P95 diagnostics; no per-frame files are written in the control path.
 
 ## Current scope
 
@@ -171,5 +181,5 @@ python -m unittest discover -s tests -v
 - Conventional outputs: weld edges and ordered 2D centerline points.
 - RGB-D output: ordered 3D points in camera and robot surface frames.
 - Supported deployment: Windows-hosted WSL and ordinary Linux.
-- Not yet included here: continuous camera streaming, temporal tracking, calibration target solver, or direct ROS 2 publishing. ROS messages, rail safety control and timestamp interpolation live in the chassis workspace.
+- Continuous RGB-D streaming and direct ROS 2 candidate/timing/state publishing are implemented in the chassis workspace; temporal model tracking and a calibration-target solver remain future work.
 - Hardware limitation: real D405 depth accuracy and weld-arc robustness have not yet been validated.

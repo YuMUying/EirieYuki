@@ -26,6 +26,7 @@ version.1/
 - [数据集恢复与使用边界](datasets/README.md)
 - [底盘数据契约](docs/CHASSIS_DATA_CONTRACT.md)
 - [部署与时间同步](docs/DEPLOYMENT_AND_TIME_SYNC.md)
+- [双相机焊缝定位实时部署](docs/REALTIME_VISION_DEPLOYMENT.md)
 - [探头相机与滑轨](docs/PROBE_CAMERA_AND_RAIL.md)
 - [多焊缝跟踪与地图记忆](docs/MULTI_SEAM_TRACKING_AND_MAP.md)
 
@@ -90,6 +91,8 @@ python infer.py --input /path/to/frame.png
 
 RGB-D 相机选型、坐标系和标定要求见 `code/weld_vision/weld_seam_mvp/RGBD_D405_DESIGN.md`。
 探头位置的第二台 D405 使用动态滑轨外参，不能复用顶部相机标定；具体命令见 [探头相机与滑轨](docs/PROBE_CAMERA_AND_RAIL.md)。
+
+实机使用常驻 ROS 2 ONNX 节点，不循环调用单帧脚本。探头相机目标 30 Hz，顶部相机 12 Hz；最新帧队列、P95 延迟诊断、启动命令和验收门限见 [双相机焊缝定位实时部署](docs/REALTIME_VISION_DEPLOYMENT.md)。
 
 ## 3. 相控阵与 TOFD 超声
 

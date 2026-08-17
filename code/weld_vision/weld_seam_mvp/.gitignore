@@ -1,6 +1,7 @@
 __pycache__/
 *.py[cod]
 .venv/
+.venv-ros/
 runs/
 *.log
 outputs/

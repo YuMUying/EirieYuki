@@ -40,12 +40,38 @@ def letterbox(image: np.ndarray, input_size: int) -> tuple[np.ndarray, Letterbox
 
 
 def restore_probability(probability: np.ndarray, transform: LetterboxTransform) -> np.ndarray:
-    cropped = probability[
-        transform.pad_top : transform.pad_top + transform.resized_height,
-        transform.pad_left : transform.pad_left + transform.resized_width,
-    ]
+    cropped = crop_probability(probability, transform)
     return cv2.resize(
         cropped,
         (transform.original_width, transform.original_height),
         interpolation=cv2.INTER_LINEAR,
     )
+
+
+def crop_probability(
+    probability: np.ndarray, transform: LetterboxTransform
+) -> np.ndarray:
+    return probability[
+        transform.pad_top : transform.pad_top + transform.resized_height,
+        transform.pad_left : transform.pad_left + transform.resized_width,
+    ]
+
+
+def restore_points(
+    points_xy: np.ndarray, transform: LetterboxTransform
+) -> np.ndarray:
+    points = np.asarray(points_xy, dtype=np.float32).reshape(-1, 2)
+    if len(points) == 0:
+        return points
+    restored = np.empty_like(points)
+    restored[:, 0] = (
+        (points[:, 0] + 0.5) * transform.original_width / transform.resized_width
+        - 0.5
+    )
+    restored[:, 1] = (
+        (points[:, 1] + 0.5) * transform.original_height / transform.resized_height
+        - 0.5
+    )
+    restored[:, 0] = np.clip(restored[:, 0], 0, transform.original_width - 1)
+    restored[:, 1] = np.clip(restored[:, 1], 0, transform.original_height - 1)
+    return restored
